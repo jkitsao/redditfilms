@@ -1,13 +1,14 @@
+
 import Page from "../layouts/Page";
 
-export default function Home({ data }) {
+export default function Movies({ data }) {
   return <Page data={data} />;
 }
 
 //fetch reddit data from r/moviesuggestions && r/movies
 export async function getServerSideProps() {
   // Fetch data from external API
-  const subreddit = "MovieSuggestions";
+  const subreddit = "movies";
   const res = await fetch(
     `https://www.reddit.com/r/${subreddit}.json?limit=700`
   );

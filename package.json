@@ -6,9 +6,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.7.3",
+    "@emotion/react": "11",
+    "@emotion/styled": "11",
+    "@tailwindcss/typography": "^0.5.0",
+    "axios": "^0.24.0",
+    "date-fns": "^2.28.0",
+    "framer-motion": "5",
+    "html-react-parser": "^1.4.4",
     "next": "latest",
+    "nprogress": "^0.2.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-anchorme": "^2.2.1",
+    "react-dom": "^17.0.2",
+    "react-js-loader": "^0.1.0",
+    "react-markdown": "^7.1.1",
+    "react-spinners": "^0.11.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
