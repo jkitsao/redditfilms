@@ -14,6 +14,7 @@ import {
 import format from "date-fns/format";
 import CommentsComp from "./CommentsComp";
 import BounceLoader from "react-spinners/BounceLoader";
+const api_key = process.env.NEXT_PUBLIC_TMDB_KEY;
 
 function TMDB({ query }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,7 +26,6 @@ function TMDB({ query }) {
   const a = query.replace(/ *\([^)]*\) */g, "");
   const b = a.replace(/\[^\]+$/, "");
   const router = useRouter();
-  const api_key = process.env.NEXT_PUBLIC_TMDB_KEY;
   const queryMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${b}`;
   const queryTvUrl = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${b}`;
   //setting the base url
