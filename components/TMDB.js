@@ -35,7 +35,6 @@ function TMDB({ query }) {
       : queryTvUrl;
 
   const fetchMovieInfo = () => setIsLoading(true);
-
   axios
     .get(url)
     .then((response) => {

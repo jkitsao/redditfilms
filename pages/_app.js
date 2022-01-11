@@ -4,7 +4,7 @@ import "../styles/nprogress.css";
 import Router from "next/router";
 import nProgress from "nprogress";
 import { ChakraProvider } from "@chakra-ui/react";
-
+import Helmet from '../components/Helmet'
 //detect route change
 
 Router.events.on("routeChangeStart", nProgress.start);
@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <div>
+        {/* <Helmet/> */}
         <Component {...pageProps} />
       </div>
     </ChakraProvider>

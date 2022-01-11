@@ -6,9 +6,12 @@ import CommentsThreadComp from "./CommentsThreadComp";
 import ReactMarkdown from "react-markdown";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
+import ToggleComp from "./ToggleComp";
 function MovieThreadComponent({ thread }) {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [path, setPath] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
   const { asPath } = router;
   //set path base on current path
@@ -18,14 +21,14 @@ function MovieThreadComponent({ thread }) {
     if (asPath === "/forum") setPath("forum");
   }, [asPath]);
   return (
-    <div className="bg-gray-800 p-2 lg:p-3 m-2 select-none shadow-md flex justify-between  py-3 rounded cursor-pointer lg:border-l-4 border-red-400 hover:border-red-600 transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
-      <div>
+    <div className="bg-gray-800  m-2 select-none shadow-md flex justify-between  py-3 rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
+      <div className="p-2 mb-3">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm text-green-400 font-semibold">
             {thread?.data?.author}
           </span>
-          <div className="flex items-center justify-center text-gray-300 cursor-not-allowed   absolute right-0  rounded opacity-50 max-h-16 ml-3">
-            <div className="  text-xs font-semibold p-2  bg-gray-700 mt-3">
+          <div className="flex items-center justify-center text-gray-50 cursor-not-allowed   absolute right-0  rounded opacity-50 max-h-16 ml-3">
+            <div className="  text-xs font-semibold p-2   mt-3">
               <span className=" inline-flex justify-center items-center text-center">
                 <svg
                   className="w-4 h-4"
@@ -52,31 +55,26 @@ function MovieThreadComponent({ thread }) {
             {thread?.data?.title}
           </span>
         </div>
-        <div className="my-2 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
+        <div className="my-3 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>
-        <div className="">
-          <button
-            className="text-xs text-yellow-400 p-3 bg-stone-700 rounded"
-            onClick={() => setIsCommentsOpen(!isCommentsOpen)}
-          >
-            {path === "forum" ? (
-              <>{isCommentsOpen ? "hide discussions" : " discussions"}</>
-            ) : (
-              <>
-                {isCommentsOpen
-                  ? "hide recommendations"
-                  : "see recommendations"}
-              </>
-            )}
-          </button>
-        </div>
+
         {isCommentsOpen && (
           <motion.div>
-            <CommentsThreadComp url={thread?.data?.url} />
+            <CommentsThreadComp url={thread?.data?.url}
+             setIsLoading={setIsLoading}
+              isLoading={isLoading}
+             />
           </motion.div>
         )}
       </div>
+      <ToggleComp
+        setIsCommentsOpen={setIsCommentsOpen}
+        isCommentsOpen={isCommentsOpen}
+        setIsLoading={setIsLoading}
+        isLoading={isLoading}
+
+      />
     </div>
   );
 }

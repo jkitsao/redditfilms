@@ -3,10 +3,9 @@ import axios from "axios";
 import CommentsComp from "./CommentsComp";
 // import { Loader } from "react-js-loader";
 import SyncLoader from "react-spinners/SyncLoader";
-function CommentsThreadComp({ url }) {
+function CommentsThreadComp({ url,setIsLoading,isLoading }) {
   const baseURl = `${url}.json`;
   const [comments, setComments] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   let [color, setColor] = useState("#ffffff");
   React.useEffect(() => {
     setIsLoading(true);
@@ -24,11 +23,7 @@ function CommentsThreadComp({ url }) {
   }, []);
   return (
     <div>
-      {isLoading && (
-        <div className="flex justify-center  items-center p-3">
-          <SyncLoader color={color} loading={isLoading} size={10} />
-        </div>
-      )}
+      
       {!isLoading && (
         <div className="w-full">
           <CommentsComp comments={comments} />
