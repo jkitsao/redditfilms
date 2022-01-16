@@ -61,10 +61,12 @@ function MovieThreadComponent({ thread }) {
 
         {isCommentsOpen && (
           <motion.div>
-            <CommentsThreadComp url={thread?.data?.url}
-             setIsLoading={setIsLoading}
+            <CommentsThreadComp
+              url={thread?.data?.url}
+              setIsLoading={setIsLoading}
               isLoading={isLoading}
-             />
+              data={thread?.data}
+            />
           </motion.div>
         )}
       </div>
@@ -73,7 +75,6 @@ function MovieThreadComponent({ thread }) {
         isCommentsOpen={isCommentsOpen}
         setIsLoading={setIsLoading}
         isLoading={isLoading}
-
       />
     </div>
   );
