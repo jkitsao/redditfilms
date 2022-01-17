@@ -8,7 +8,7 @@ function MoviesComponent({ data }) {
   //   console.log({ newData: data });
   // }, [data]);
   return (
-    <div className="w-full lg:w-2/5 lg:mx-auto overflow-x-hidden">
+    <div className="w-full lg:w-1/3 lg:mx-auto overflow-x-hidden">
       {data.map((thread, index) => (
         <MovieThreadComponent key={index} thread={thread} />
       ))}

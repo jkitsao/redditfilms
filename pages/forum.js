@@ -1,8 +1,7 @@
-
 import Page from "../layouts/Page";
 
 export default function Movies({ data }) {
-  return <Page data={data} />;
+  return <Page data={data} title="r/movies | forum" />;
 }
 
 //fetch reddit data from r/moviesuggestions && r/movies

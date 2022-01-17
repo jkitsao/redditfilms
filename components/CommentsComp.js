@@ -10,7 +10,7 @@ function CommentsComp({ comments }) {
   const { asPath } = router;
   return (
     <div
-      className="overflow-y-auto"
+      className="overflow-y-auto mb-5"
       id="style-4"
       style={{
         maxHeight: "500px",

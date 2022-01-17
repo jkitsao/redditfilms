@@ -50,7 +50,7 @@ function MovieThreadComponent({ thread }) {
             </div>
           </div>
         </div>
-        <div className="px-2 lg:w-5/6 mt-5">
+        <div className="px-2  mt-5">
           <span className="font-semibold block text-gray-200 text-xl my-2">
             {thread?.data?.title}
           </span>

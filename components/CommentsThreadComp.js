@@ -29,7 +29,7 @@ function CommentsThreadComp({ url, setIsLoading, isLoading, data }) {
   return (
     <>
       {isImage && (
-        <div>
+        <div className="pb-5">
           <img src={data?.url} alt="" className="" />
         </div>
       )}

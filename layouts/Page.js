@@ -5,11 +5,11 @@ import Navigation from "../components/Navigation";
 import Tabs from "../components/Tabs";
 import Helmet from "../components/Helmet";
 
-function Page({ data }) {
+function Page({ data, title }) {
   return (
     <div className="bg-gray-900 pb-5 h-full min-h-screen">
       <Navigation />
-       <Helmet/>
+      <Helmet title={title} />
       <Tabs />
       <div className="pt-5 pb-8">
         {data && <MoviesComponent data={data?.data?.children} />}

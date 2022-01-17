@@ -1,7 +1,7 @@
 import Page from "../layouts/Page";
 
 export default function Tv({ data }) {
-  return <Page data={data} />;
+  return <Page data={data} title="tvshows | r/televisionsuggestions" />;
 }
 
 //fetch reddit data from r/moviesuggestions && r/movies

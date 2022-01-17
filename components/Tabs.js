@@ -14,7 +14,7 @@ function Tabs() {
     if (asPath === "/forum") setActiveTab("forum");
   }, [asPath]);
   return (
-    <section className="lg:w-2/5  sticky top-0 z-50 bg-gray-900 lg:bg-neutral-900 rounded-b lg:mx-auto p-3 text-sm lg:text-base">
+    <section className="lg:w-1/3  sticky top-0 z-50 bg-gray-900 lg:bg-neutral-900 rounded-b lg:mx-auto p-3 text-sm lg:text-base">
       <div className="flex justify-center">
         {tabs.map((tab, index) => (
           <button

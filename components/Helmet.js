@@ -1,8 +1,8 @@
 import React from "react";
 import Head from "next/head";
-function Helmet() {
+function Helmet({ title }) {
   const description = "Get Movie and Tv shows recomendation from reddit";
-  const pageTitle = "reddit movies";
+  const pageTitle = title;
   const twitterHandle = "@j_kitsao";
   const currentURL = "redditmovies.xyz";
   const previewImage =
