@@ -5,8 +5,7 @@ function Helmet({ title }) {
   const pageTitle = title;
   const twitterHandle = "@j_kitsao";
   const currentURL = "redditmovies.xyz";
-  const previewImage =
-    "https://lucidcms.imgix.net/Black%20Movie%20Night%20Invitations%20Poster.jpg";
+  const previewImage = "https://lucidcms.imgix.net/redditflix.jpg";
   const siteName = "redditmovies";
   return (
     <div className="bg-gray-900 h-0">
