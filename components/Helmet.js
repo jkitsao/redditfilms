@@ -6,7 +6,7 @@ function Helmet({ title }) {
   const twitterHandle = "@j_kitsao";
   const currentURL = "redditmovies.xyz";
   const previewImage =
-    "https://og-image.xyz/og/RedditFilms/Get Movie and Tv recomendation from reddit/redditfilms.xyz/ /atkinson/descendsun/{{h}}f3d2ed/data.png";
+    "https://lucidcms.imgix.net/Black%20Movie%20Night%20Invitations%20Poster.jpg";
   const siteName = "redditmovies";
   return (
     <div className="bg-gray-900 h-0">

@@ -48,7 +48,7 @@ function TMDB({ query }) {
     });
 
   const handleClick = () => {
-    fetchMovieInfo();
+    () => fetchMovieInfo;
     onOpen();
   };
 
