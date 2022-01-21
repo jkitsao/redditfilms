@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CommentsComp from "./CommentsComp";
 // import { Loader } from "react-js-loader";
@@ -8,16 +8,16 @@ function CommentsThreadComp({ url, setIsLoading, isLoading, data }) {
   const isImage = data?.preview ? true : false;
   const [comments, setComments] = useState([]);
   let [color, setColor] = useState("#ffffff");
-  React.useEffect(() => {
-    console.log({ data });
+  useEffect(() => {
+    // console.log({ data });
     // if (!isImage) {
     setIsLoading(true);
 
     axios
       .get(baseURl)
       .then((response) => {
-        console.log(response.data[1]);
-        setComments(response.data[1]);
+        // console.log(response.data);
+        if (response.data[1]) setComments(response.data[1]);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -28,13 +28,8 @@ function CommentsThreadComp({ url, setIsLoading, isLoading, data }) {
   }, []);
   return (
     <>
-      {isImage && (
-        <div className="pb-5">
-          <img src={data?.url} alt="" className="" />
-        </div>
-      )}
       <div>
-        {!isLoading && !isImage && (
+        {!isLoading && (
           <div className="w-full">
             <CommentsComp comments={comments} />
           </div>

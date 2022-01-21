@@ -33,6 +33,7 @@ function TMDB({ query }) {
     router.asPath === "/" || router.asPath === "/movies"
       ? queryMovieURL
       : queryTvUrl;
+  //
 
   const fetchMovieInfo = () => setIsLoading(true);
   axios
@@ -59,7 +60,7 @@ function TMDB({ query }) {
         onClick={() => handleClick()}
         className=" text-yellow-400  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2  my-2 cursor-pointer rounded transition-all duration-200"
       >
-        movie information
+        {router.asPath === "/tvshows" ? "series" : "movie"} information
       </button>
 
       <Modal

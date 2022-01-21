@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Anchorme } from "react-anchorme";
 // import parse from "html-react-parser";
 import ReactMarkdown from "react-markdown";
@@ -8,6 +8,9 @@ import TMDB from "./TMDB";
 function CommentsComp({ comments }) {
   const router = useRouter();
   const { asPath } = router;
+  useEffect(() => {
+    console.log({ comments });
+  }, [comments]);
   return (
     <div
       className="overflow-y-auto mb-5"

@@ -11,6 +11,7 @@ function MovieThreadComponent({ thread }) {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [path, setPath] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const isImage = thread?.data?.preview ? true : false;
 
   const router = useRouter();
   const { asPath } = router;
@@ -22,13 +23,13 @@ function MovieThreadComponent({ thread }) {
   }, [asPath]);
   return (
     <div className="bg-gray-800  m-2 select-none shadow-md flex justify-between  py-3 rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
-      <div className="p-2 mb-3">
-        <div className="flex items-center justify-between mb-2">
+      <div className=" mb-3">
+        <div className="flex items-center justify-between mb-2 p-2">
           <span className="text-sm text-green-400 font-semibold">
             {thread?.data?.author}
           </span>
-          <div className="flex items-center justify-center text-gray-50 cursor-not-allowed   absolute right-0  rounded opacity-50 max-h-16 ml-3">
-            <div className="  text-xs font-semibold p-2   mt-3">
+          <div className=" text-gray-50 cursor-not-allowed   absolute right-0  rounded opacity-50 max-h-16 ml-3">
+            <div className="  text-xs font-semibold p-2">
               <span className=" inline-flex justify-center items-center text-center">
                 <svg
                   className="w-4 h-4"
@@ -50,14 +51,19 @@ function MovieThreadComponent({ thread }) {
             </div>
           </div>
         </div>
-        <div className="px-2  mt-5">
+        <div className="px-2  mt-5 shadow-inner">
           <span className="font-semibold block text-gray-200 text-xl my-2">
             {thread?.data?.title}
           </span>
         </div>
-        <div className="my-3 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
+        <div className="my-3 pb-3 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>
+        {isImage && (
+          <div className=" border-gray-500">
+            <img src={thread?.data?.url} alt="" className="" />
+          </div>
+        )}
 
         {isCommentsOpen && (
           <motion.div>
