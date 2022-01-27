@@ -30,7 +30,7 @@ function MovieThreadComponent({ thread }) {
           </span>
           <div className=" text-gray-50 cursor-not-allowed   absolute right-0  rounded opacity-50 max-h-16 ml-3">
             <div className="  text-xs font-semibold p-2">
-              <span className=" inline-flex justify-center items-center text-center">
+              <span className=" inline-flex justify-center items-center text-center w-full">
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -56,7 +56,7 @@ function MovieThreadComponent({ thread }) {
             {thread?.data?.title}
           </span>
         </div>
-        <div className="my-3 pb-3 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
+        <div className="my-3 pb-8 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>
         {isImage && (

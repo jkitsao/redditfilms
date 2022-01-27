@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function Footer() {
   return (
@@ -9,6 +10,11 @@ function Footer() {
           kitsao{" "}
         </a>
       </span>
+      <div>
+        <Link href="#navigation-bar" scroll={false}>
+          <a>top</a>
+        </Link>
+      </div>
     </div>
   );
 }
