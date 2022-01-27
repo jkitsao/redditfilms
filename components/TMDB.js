@@ -35,21 +35,23 @@ function TMDB({ query }) {
       : queryTvUrl;
   //
 
-  const fetchMovieInfo = () => setIsLoading(true);
-  axios
-    .get(url)
-    .then((response) => {
-      // console.log(response.data);
-      setMovies(response.data);
-      setIsLoading(false);
-    })
-    .catch((error) => {
-      console.error(error);
-      setIsLoading(false);
-    });
+  const fetchMovieInfo = () => {
+    setIsLoading(true);
+    axios
+      .get(url)
+      .then((response) => {
+        // console.log(response.data);
+        setMovies(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsLoading(false);
+      });
+  };
 
   const handleClick = () => {
-    () => fetchMovieInfo;
+    fetchMovieInfo();
     onOpen();
   };
 

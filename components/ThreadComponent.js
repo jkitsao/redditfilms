@@ -52,7 +52,7 @@ function MovieThreadComponent({ thread }) {
           </div>
         </div>
         <div className="px-2  mt-5 shadow-inner">
-          <span className="font-semibold block text-gray-200 text-xl my-2">
+          <span className="font-semibold block text-yellow-200 text-xl my-2">
             {thread?.data?.title}
           </span>
         </div>
