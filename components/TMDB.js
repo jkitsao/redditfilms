@@ -22,19 +22,37 @@ function TMDB({ query }) {
   const [isLoading, setIsLoading] = useState(false);
 
   let [color, setColor] = useState("#ffffff");
-  // const []
+  let [queryIndex, setQueryIndex] = useState(0);
+  // remove values inside ()
   const a = query.replace(/ *\([^)]*\) */g, "");
-  const b = a.replace(/\[^\]+$/, "");
+  //get values before a comma
+  const b = a.replace(/,[^,]+$/, "");
+  //check for line breaks
+  const query_values = [];
+  const line = (b.match(/\n/g) || []).length;
+  if (line > 0) {
+    query_values = b.split("\n").filter(function (el) {
+      return el != "";
+    });
+  }
+  //construct query param
+  const query_param_init = () => {
+    if (query_values.length < 1) return b;
+    return query_values[queryIndex];
+  };
+  const query_param = query_param_init();
+
+  //
   const router = useRouter();
-  const queryMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${b}`;
-  const queryTvUrl = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${b}`;
+  const queryMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query_param}`;
+  const queryTvUrl = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query_param}`;
   //setting the base url
   const url =
     router.asPath === "/" || router.asPath === "/movies"
       ? queryMovieURL
       : queryTvUrl;
-  //
 
+  //fetch movie/series info then open the modal
   const fetchMovieInfo = () => {
     setIsLoading(true);
     axios
@@ -51,9 +69,20 @@ function TMDB({ query }) {
   };
 
   const handleClick = () => {
+    setQueryIndex(0);
     fetchMovieInfo();
     onOpen();
   };
+
+  //next movie(line break mode)
+
+  const handleNextMovieLineBreak = () => {
+    if (queryIndex < query_values.length) {
+      setQueryIndex(queryIndex + 1);
+      // () => fetchMovieInfo();
+    }
+  };
+  useEffect(() => [fetchMovieInfo()], [queryIndex]);
 
   return (
     <>
@@ -72,12 +101,13 @@ function TMDB({ query }) {
         bg="gray.700"
         scrollBehavior="inside"
         id="style-4"
-        blockScrollOnMount={false}
+        // blockScrollOnMount={false}
       >
         <ModalOverlay />
         <ModalContent bg="gray.800">
           <ModalHeader color="yellow.300">
-            {query || "title goes here"}
+            {/* {query_values.length < 1 && query} */}
+            {query_values.length > 1 && query_values[queryIndex]}
           </ModalHeader>
           <ModalCloseButton color="gray.200" />
           <ModalBody>
@@ -90,7 +120,7 @@ function TMDB({ query }) {
               <div className=" py-3 px-2">
                 {movies.total_results > 0 &&
                   movies.results.map((movie) => (
-                    <div>
+                    <div className="mb-4">
                       <MovieComp movie={movie} />
                     </div>
                   ))}
@@ -101,15 +131,40 @@ function TMDB({ query }) {
                         src="https://i.gifer.com/origin/50/5080c448c4a2664c271bd1c5e7593c6d_w200.gif"
                         className="w-full object-cover"
                       />
-                      <div className="text-lg text-red-500 p-2">
-                        `{b}` not found
+                      <div className="text-lg text-red-500 font-semibold p-2">
+                        `{query_param}` not found
                       </div>
                     </div>
                   </div>
                 )}
               </div>
             )}
-            {/* <div className="text-white text-xs">{JSON.stringify(movies)}</div> */}
+            {queryIndex + 1 < query_values.length && (
+              <ModalFooter>
+                <button
+                  className=" left-0   flex   justify-center items-center absolute bottom-0 text-green-300 mx-2 bg-gray-900 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300  rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 dark:border-gray-700"
+                  onClick={handleNextMovieLineBreak}
+                >
+                  <span>
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 5l7 7-7 7M5 5l7 7-7 7"
+                      />
+                    </svg>
+                  </span>
+                  <span className="mx-1">{query_values[queryIndex + 1]}</span>
+                </button>
+              </ModalFooter>
+            )}
           </ModalBody>
         </ModalContent>
       </Modal>
