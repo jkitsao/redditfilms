@@ -7,11 +7,32 @@ import ReactMarkdown from "react-markdown";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
 import ToggleComp from "./ToggleComp";
+import PreviewComp from "./PreviewComp";
 function MovieThreadComponent({ thread }) {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [path, setPath] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const isImage = thread?.data?.preview ? true : false;
+  // const { hostname } = new URL(thread?.data?.url);
+
+  function getLocation(href) {
+    var match = href.match(
+      /^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/
+    );
+    return (
+      match && {
+        href: href,
+        protocol: match[1],
+        host: match[2],
+        hostname: match[3],
+        port: match[4],
+        pathname: match[5],
+        search: match[6],
+        hash: match[7],
+      }
+    );
+  }
+  // console.log(getLocation(thread?.data.url)?.hostname);
 
   const router = useRouter();
   const { asPath } = router;
@@ -54,8 +75,13 @@ function MovieThreadComponent({ thread }) {
         <div className="px-2  mt-5 shadow-inner">
           <span className="font-semibold block text-yellow-200 text-xl my-2">
             {thread?.data?.title}
+            {/* {getHostname(thread?.data.url)} */}
           </span>
         </div>
+        {thread.data?.thumbnail &&
+          getLocation(thread?.data.url)?.hostname !== "www.reddit.com" && (
+            <PreviewComp data={thread?.data} />
+          )}
         <div className="my-3 pb-8 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>
