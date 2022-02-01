@@ -25,7 +25,7 @@ function CommentsComp({ comments }) {
             key={index}
             className=" text-gray-100  bg-gray-900 rounded p-3 m-3 "
           >
-            <div className="text-red-400 text-sm font-mono">
+            <div className="text-red-400 text-xs font-mono">
               {comment?.data?.author}
             </div>
             <div className="prose prose-sm prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 text-gray-300 ">

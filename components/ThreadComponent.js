@@ -8,6 +8,7 @@ import parse from "html-react-parser";
 import { motion } from "framer-motion";
 import ToggleComp from "./ToggleComp";
 import PreviewComp from "./PreviewComp";
+import ProfileComp from "./ProfileComp";
 function MovieThreadComponent({ thread }) {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [path, setPath] = useState("");
@@ -46,9 +47,10 @@ function MovieThreadComponent({ thread }) {
     <div className="bg-gray-800  m-2 select-none shadow-md flex justify-between  py-3 rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
       <div className=" mb-3">
         <div className="flex items-center justify-between mb-2 p-2">
-          <span className="text-sm text-green-400 font-semibold">
+          {/* <span className="text-sm text-green-400 font-semibold">
             {thread?.data?.author}
-          </span>
+          </span> */}
+          <ProfileComp author={thread?.data?.author} />
           <div className=" text-gray-50 cursor-not-allowed   absolute right-0  rounded opacity-50 max-h-16 ml-3">
             <div className="  text-xs font-semibold p-2">
               <span className=" inline-flex justify-center items-center text-center w-full">
@@ -80,13 +82,16 @@ function MovieThreadComponent({ thread }) {
         </div>
         {thread.data?.thumbnail &&
           getLocation(thread?.data.url)?.hostname !== "www.reddit.com" && (
-            <PreviewComp data={thread?.data} />
+            <PreviewComp
+              data={thread?.data}
+              hostname={getLocation(thread?.data.url)?.hostname}
+            />
           )}
-        <div className="my-3 pb-8 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
+        <div className="my-3 mb-3 pb-2 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>
         {isImage && (
-          <div className=" border-gray-500">
+          <div className=" border-gray-500 mb-5">
             <img src={thread?.data?.url} alt="" className="" />
           </div>
         )}
