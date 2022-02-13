@@ -3,17 +3,22 @@ import React from "react";
 export default function PreviewComp({ data, hostname }) {
   return (
     <section className=" mx-2  rounded overflow-hidden">
-      <div className="flex bg-gray-900">
+      <div className="flex bg-gray-900 px-2">
         <div>
           <img
             src={data?.thumbnail}
             alt=""
-            className="h-full  min-w-32 object-cover"
+            className="h-full  min-w-24 object-contain"
           />
         </div>
         <div className="flex p-3 h-full w-full justify-center items-center">
-          <div>
-            <span className=" block text-sm text-gray-300 font-semibold">
+          <div className=" max-h-32 text-ellipsis">
+            <span
+              className=" block text-sm text-gray-300 font-semibold max-h-24 text-clip overflow-auto mb-2"
+              style={{
+                maxHeight: "3.5rem",
+              }}
+            >
               {data?.title}
             </span>
             <span className="text-xs text-blue-200 leading-tight underline inline-flex ">

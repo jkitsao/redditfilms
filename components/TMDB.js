@@ -58,7 +58,7 @@ function TMDB({ query }) {
     axios
       .get(url)
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         setMovies(response.data);
         setIsLoading(false);
       })
@@ -194,18 +194,19 @@ export function MovieComp({ movie }) {
       </div>
       {/* <hr /> */}
       <div
-        className="lg:w-2/3 lg:p-3 shadow-inner overflow-hidden"
+        className="lg:w-2/3 lg:p-3 shadow-inner overflow-x-hidden"
         style={{
-          maxHeight: "250px",
+          maxHeight: "350px",
         }}
       >
-        <div className="  text-xl font-semibold py-1 text-red-400 ">
+        <div className=" px-2 text-xl font-semibold py-1 text-red-400 ">
           <span>{movie?.original_title || movie?.original_name}</span>
         </div>
         <div className="  py-1 text-red-400 ">
-          <span className=" inline-block mx-1.5 text-green-300 font-normal text-sm">
-            {movie?.release_date &&
-              format(new Date(movie?.release_date), "do MMMM Y")}
+          <span className=" inline-block mx-2 text-green-300 font-normal text-sm">
+            {movie?.release_date ||
+              (movie?.first_air_date &&
+                format(new Date(movie?.first_air_date), "do MMMM Y"))}
           </span>
         </div>
         <div className=" text-gray-300 px-2 text-sm lg:w-4/5 ">

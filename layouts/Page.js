@@ -7,7 +7,7 @@ import Helmet from "../components/Helmet";
 
 function Page({ data, title }) {
   return (
-    <div className="bg-gray-900 pb-5 h-full min-h-screen">
+    <div className="bg-black pb-5 h-full min-h-screen">
       <Navigation />
       <Helmet title={title} />
       <Tabs />

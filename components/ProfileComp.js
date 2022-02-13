@@ -26,13 +26,13 @@ function ProfileComp({ author }) {
               alt=""
               className="w-8 h-8 rounded-full  object-cover"
               onError={(e) => {
-                e.target.src = user?.icon_img || ""; //  replacement image
+                e.target.src = user?.icon_img || ""; //  replacement image[user?.icon_img]
               }}
             />
           </div>
-          <div className="px-1 ">
-            <span className="text-red-400 text-sm shadow-lg font-semibold font-mono">
-              u/{user.name}
+          <div className="mx-2 px-2 bg-gray-900">
+            <span className="text-red-400 text-xs  shadow-lg font-bold font-mono">
+              u/{author}
             </span>
           </div>
         </section>
