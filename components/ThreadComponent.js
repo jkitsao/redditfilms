@@ -44,7 +44,7 @@ function MovieThreadComponent({ thread }) {
     if (asPath === "/forum") setPath("forum");
   }, [asPath]);
   return (
-    <div className="bg-gray-800  m-3 select-none shadow-md flex justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
+    <div className="bg-gray-800  m-3 pb-4 select-none shadow-md flex justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
       <div className=" mb-3">
         <div className="flex items-center justify-between mb-2 p-2 bg-gray-900">
           {/* <span className="text-sm text-green-400 font-semibold">
