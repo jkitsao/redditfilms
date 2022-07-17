@@ -9,7 +9,7 @@ export async function getServerSideProps() {
   // Fetch data from external API
   const subreddit = "televisionsuggestions";
   const res = await fetch(
-    `https://www.reddit.com/r/${subreddit}.json?limit=700`
+    `https://www.reddit.com/r/${subreddit}.json?limit=400`
   );
   const data = await res.json();
 

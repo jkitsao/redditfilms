@@ -7,10 +7,10 @@ import Helmet from "../components/Helmet";
 
 function Page({ data, title }) {
   return (
-    <div className="bg-black pb-5 h-full min-h-screen">
+    <div className="">
       <Navigation />
       <Helmet title={title} />
-      <Tabs />
+      {/* <Tabs /> */}
       <div className="pt-5 pb-8">
         {data && <MoviesComponent data={data?.data?.children} />}
       </div>

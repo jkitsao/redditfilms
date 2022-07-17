@@ -44,15 +44,15 @@ function MovieThreadComponent({ thread }) {
     if (asPath === "/forum") setPath("forum");
   }, [asPath]);
   return (
-    <div className="bg-gray-800  m-3 pb-4 select-none shadow-md flex justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
+    <div className="bg-gray-900  pb-4 select-none shadow-md  justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
       <div className=" mb-3">
-        <div className="flex items-center justify-between mb-2 p-2 bg-gray-900">
+        <div className="flex items-center justify-between mb-2 p-2 bg-white">
           {/* <span className="text-sm text-green-400 font-semibold">
             {thread?.data?.author}
           </span> */}
           <ProfileComp author={thread?.data?.author} />
-          <div className=" text-gray-50 cursor-not-allowed   absolute right-0  rounded opacity-50 max-h-16 ml-3">
-            <div className="  text-xs font-semibold p-2">
+          <div className=" text-gray-600 cursor-not-allowed  w-full absolute right-0  rounded opacity-50 max-h-16">
+            {/* <div className="  text-xs font-semibold p-2 ">
               <span className=" inline-flex justify-center items-center text-center w-full">
                 <svg
                   className="w-4 h-4"
@@ -71,11 +71,11 @@ function MovieThreadComponent({ thread }) {
               </span>
 
               <span className="block text-center">{thread?.data?.ups}</span>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="px-2  mt-5 shadow-inner">
-          <span className="font-semibold block text-yellow-200 text-xl my-2">
+          <span className="font-semibold block text-yellow-200 text-xl my-2 title">
             {thread?.data?.title}
             {/* {getHostname(thread?.data.url)} */}
           </span>
@@ -87,7 +87,7 @@ function MovieThreadComponent({ thread }) {
               hostname={getLocation(thread?.data.url)?.hostname}
             />
           )}
-        <div className="my-3 mb-3 pb-2 text-gray-400 prose prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 p-2">
+        <div className="my-3 mb-10 pb-2 markdown_div text-gray-300 font-normal leading-snug prose prose-a:text-blue-400 prose-strong:text-green-400 prose-base hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-200 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>
         {isImage && (

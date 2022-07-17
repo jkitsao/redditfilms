@@ -1,9 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
 :root {
   --mainColor: #ff9800;
 }
+
+
 body {
   -webkit-tap-highlight-color: transparent;
+  /* font-family: 'Monofett', cursive; */
 }
+
+.markdown_div {
+  font-family: 'Nunito Sans', sans-serif;
+
+}
+
+.title {
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.page_layout {
+  /* background-attachment: fixed; */
+  background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/darkness.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 /* #__next {
   display: flex;
   flex-direction: column;
@@ -46,6 +71,7 @@ body {
   background-color: #060020;
   border: 2px solid #555555;
 }
+
 /* a {
   /* background: linear-gradient(
     to bottom,
@@ -73,6 +99,7 @@ a,
 strong {
   color: aqua;
 }
+
 #logo-text {
   -webkit-background-clip: text;
   background-clip: text;

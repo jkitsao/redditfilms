@@ -19,19 +19,19 @@ function ProfileComp({ author }) {
   return (
     <>
       {user && (
-        <section className="flex h-full items-center">
+        <section className="flex h-full w-full items-center  bg-white">
           <div>
             <img
               src={user?.snoovatar_img}
               alt=""
-              className="w-8 h-8 rounded-full  object-cover"
+              className="w-10 h-10  shadow-xl bg-gray-50 p-1 object-cover"
               onError={(e) => {
-                e.target.src = user?.icon_img || ""; //  replacement image[user?.icon_img]
+                e.target.src = "https://img.icons8.com/fluency/344/reddit.png"; //  replacement image[user?.icon_img]
               }}
             />
           </div>
-          <div className="mx-2 px-2 bg-gray-900">
-            <span className="text-red-400 text-xs  shadow-lg font-bold font-mono">
+          <div className="mx-2 px-2 ">
+            <span className="text-red-600 text-xs  font-bold font-mono">
               u/{author}
             </span>
           </div>
