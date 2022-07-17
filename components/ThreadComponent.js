@@ -46,7 +46,7 @@ function MovieThreadComponent({ thread }) {
   return (
     <div className="bg-gray-900  pb-4 select-none shadow-md  justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
       <div className=" mb-3">
-        <div className="flex items-center justify-between mb-2 p-2 bg-white">
+        <div className="flex items-center justify-between mb-2 p-2 ">
           {/* <span className="text-sm text-green-400 font-semibold">
             {thread?.data?.author}
           </span> */}
@@ -74,8 +74,8 @@ function MovieThreadComponent({ thread }) {
             </div> */}
           </div>
         </div>
-        <div className="px-2  mt-5 shadow-inner">
-          <span className="font-semibold block text-yellow-200 text-xl my-2 title">
+        <div className="px-2  mt-5 ">
+          <span className=" block text-yellow-500 text-xl my-2 title tracking-wide">
             {thread?.data?.title}
             {/* {getHostname(thread?.data.url)} */}
           </span>

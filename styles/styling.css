@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
 
 :root {
   --mainColor: #ff9800;
@@ -17,7 +19,7 @@ body {
 }
 
 .title {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Fjalla One', sans-serif;
 
 }
 
@@ -104,9 +106,10 @@ strong {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: rgba(227, 255, 202, 0);
-  background-image: url("https://thumbs.gfycat.com/HardtofindQuickAnt-size_restricted.gif");
+  background-image: url("https://pa1.narvii.com/6747/86aecd6c770052fafe5159cb36b2d50a9b1658f7_hq.gif");
   background-repeat: no-repeat;
   background-attachment: cover;
   background-position: center center;
   background-size: cover;
+  font-family: 'Anton', sans-serif;
 }

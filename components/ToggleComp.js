@@ -12,7 +12,7 @@ function ToggleComp({
   return (
     <button
       role="button"
-      className="w-full flex justify-center items-center mt-5 py-2 lg:py-3 absolute bottom-0  focus:outline-none bg-gray-700 "
+      className="w-full flex justify-center items-center mt-10 py-2 absolute bottom-0  focus:outline-none "
       onClick={() => setIsCommentsOpen(!isCommentsOpen)}
     >
       <button className="text-xs font-bold text-white">

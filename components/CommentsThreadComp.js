@@ -30,7 +30,7 @@ function CommentsThreadComp({ url, setIsLoading, isLoading, data }) {
     <>
       <div>
         {!isLoading && (
-          <div className="w-full">
+          <div className="w-full ">
             <CommentsComp comments={comments} />
           </div>
         )}

@@ -10,11 +10,12 @@ function Page({ data, title }) {
     <div className="">
       <Navigation />
       <Helmet title={title} />
-      {/* <Tabs /> */}
       <div className="pt-5 pb-8">
         {data && <MoviesComponent data={data?.data?.children} />}
       </div>
+      <Tabs />
       <Footer />
+
     </div>
   );
 }

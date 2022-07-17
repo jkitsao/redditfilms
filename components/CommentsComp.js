@@ -13,22 +13,22 @@ function CommentsComp({ comments }) {
   }, [comments]);
   return (
     <div
-      className="overflow-y-auto mb-5"
+      className="overflow-y-auto mb-5 bg-slate-800 shadow-xl"
       id="style-4"
       style={{
-        maxHeight: "500px",
+        maxHeight: "400px",
       }}
     >
       {comments?.data?.children &&
         comments?.data?.children.map((comment, index) => (
           <div
             key={index}
-            className=" text-gray-100  bg-gray-900 rounded p-3 m-3 "
+            className=" text-gray-100  bg-slate-900 shadow-lg  rounded p-3 m-3 "
           >
             <div className="text-red-400 text-xs font-mono">
               {comment?.data?.author}
             </div>
-            <div className="prose prose-sm prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 text-gray-300 ">
+            <div className="prose prose-sm markdown_div prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 text-gray-300 ">
               <Anchorme target="_blank" rel="noreferrer noopener">
                 <ReactMarkdown>{comment?.data?.body}</ReactMarkdown>
               </Anchorme>

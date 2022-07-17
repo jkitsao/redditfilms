@@ -3,16 +3,16 @@ import React from "react";
 function Navigation() {
   return (
     <nav
-      className=" bg-black z-50 border-gray-200  px-4 py-4 mb-12  sm:w-4/5 md:w-3/4 lg:w-1/2 xl:w-1/3 lg:mx-auto "
+      className=" lg:w-1/2 lg:mx-auto text-center mx-auto z-50 border-gray-200  px-4 py-6  w-full "
       id="navigation-bar"
     >
       <div className="container flex flex-wrap justify-center lg:justify-items-start items-center mx-auto">
         <div className="">
           <span
-            className="self-center text-4xl mx-2 font-bold whitespace-nowrap"
+            className="self-center text-center text-5xl mx-2 font-bold "
             id="logo-text"
           >
-            Redditfilms.xyz
+            Movie and Tv recomendations from reddit
           </span>
         </div>
 

@@ -19,7 +19,7 @@ function ProfileComp({ author }) {
   return (
     <>
       {user && (
-        <section className="flex h-full w-full items-center  bg-white">
+        <section className="flex h-full w-full items-center">
           <div>
             <img
               src={user?.snoovatar_img}
@@ -31,7 +31,7 @@ function ProfileComp({ author }) {
             />
           </div>
           <div className="mx-2 px-2 ">
-            <span className="text-red-600 text-xs  font-bold font-mono">
+            <span className="text-red-600 text-sm   markdown_div">
               u/{author}
             </span>
           </div>
