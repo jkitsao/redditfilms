@@ -9,7 +9,7 @@ function Navigation() {
       <div className="container flex flex-wrap justify-center lg:justify-items-start items-center mx-auto">
         <div className="">
           <span
-            className="self-center text-center text-5xl mx-2 font-bold "
+            className="self-center text-center text-4xl mx-2 font-bold "
             id="logo-text"
           >
             Movie and Tv recomendations from reddit

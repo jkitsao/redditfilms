@@ -4,7 +4,7 @@ export default function PreviewComp({ data, hostname }) {
   return (
     <section className=" mx-2  rounded overflow-hidden  lg:w-3/4">
       <div className="flex bg-black  shadow-lg">
-        <div className="h-24 w-32"
+        <div className="h-24 w-32 bg-no-repeat bg-cover"
           style={{
             backgroundImage: `url(${data?.thumbnail})`
           }}

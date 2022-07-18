@@ -14,9 +14,11 @@ Router.events.on("routeChangeComplete", nProgress.done);
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
-      <div className="page_layout">
+      <div className="">
+
         {/* <Helmet/> */}
         <Component {...pageProps} />
+        {/* </div> */}
       </div>
     </ChakraProvider>
   );

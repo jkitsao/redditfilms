@@ -2,9 +2,9 @@ import Page from "../layouts/Page";
 
 export default function Home({ data }) {
   return (
-    <div className="page_layout">
-      <Page data={data} title="movies | r/MovieSuggestions" />
-    </div>
+
+    <Page data={data} title="movies | r/MovieSuggestions" />
+
   );
 }
 
@@ -13,7 +13,7 @@ export async function getServerSideProps() {
   // Fetch data from external API
   const subreddit = "MovieSuggestions";
   const res = await fetch(
-    `https://www.reddit.com/r/${subreddit}.json?limit=400`
+    `https://www.reddit.com/r/${subreddit}.json?limit=100`
   );
   const data = await res.json();
 

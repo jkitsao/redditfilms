@@ -28,7 +28,7 @@ function Tabs() {
   return (
     <>
       <section
-        className="sm:w-4/5 md:w-3/4 sticky bottom-0 lg:top-0 z-50 lg:w-1/2 xl:w-1/3 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 lg:mx-auto p-3 text-sm lg:text-base"
+        className="sm:w-4/5 md:w-3/4 sticky top-0 z-50 lg:w-1/2 xl:w-1/3 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 lg:mx-auto p-3 text-sm lg:text-base"
         id="tabs"
       >
         <div className="flex justify-center">
