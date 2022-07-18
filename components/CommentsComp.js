@@ -35,7 +35,7 @@ function CommentsComp({ comments }) {
             </div>
             {asPath !== "/forum" && (
               <div>
-                {comment?.data?.body && comment?.data?.body.length < 150 && (
+                {comment?.data?.body && comment?.data?.body.length < 200 && (
                   <TMDB query={comment?.data?.body} />
                 )}
               </div>

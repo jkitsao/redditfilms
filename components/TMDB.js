@@ -26,25 +26,35 @@ function TMDB({ query }) {
   // remove values inside ()
   const a = query.replace(/ *\([^)]*\) */g, "");
   //get values before a comma
-  const b = a.replace(/,[^,]+$/, "");
+  // const b = a.replace(/,[^,]+$/, "");
   //check for line breaks
-  const query_values = [];
-  const line = (b.match(/\n/g) || []).length;
+  let query_values = [];
+  let line_values = [];
+  let coma_values = []
+  //check for strings separated by coma and push that to array
+  if (a.includes(',')) {
+    coma_values = a.split(",").filter(function (el) {
+      return el != "";
+    });
+  }
+  //check for strings separated by line and push that to array
+  const line = (a.match(/\n/g) || []).length;
   if (line > 0) {
-    query_values = b.split("\n").filter(function (el) {
+    line_values = a.split("\n").filter(function (el) {
       return el != "";
     });
   }
   //construct query param
   const query_param_init = () => {
-    if (query_values.length < 1) return b;
+    query_values = line_values.concat(coma_values)
+    if (query_values.length < 1) return a;
     return query_values[queryIndex];
   };
   const query_param = query_param_init();
 
   //
   const router = useRouter();
-  const queryMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query_param}`;
+  const queryMovieURL = `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${query_param}`;
   const queryTvUrl = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query_param}`;
   //setting the base url
   const url =
@@ -58,7 +68,7 @@ function TMDB({ query }) {
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data);
+        console.log({ movie_info: response.data });
         setMovies(response.data);
         setIsLoading(false);
       })
@@ -89,19 +99,22 @@ function TMDB({ query }) {
       {/* <Button onClick={onOpen}>Open Modal</Button> */}
       <button
         onClick={() => handleClick()}
-        className=" text-yellow-400  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2  my-2 cursor-pointer rounded transition-all duration-200"
+        className=" text-orange-300  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2  my-2 cursor-pointer rounded transition-all duration-200"
       >
-        {router.asPath === "/tvshows" ? "series" : "movie"} information
+        <span>
+          <img src='https://img.icons8.com/avantgarde/344/experimental-about-avantgarde.png' className=" inline-flex items-center w-5 h-5 mx-1" alt='about' />
+          {router.asPath === "/tvshows" ? "series" : "movie"} information
+        </span>
       </button>
 
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size="4xl"
+        size="2xl"
         bg="gray.700"
         scrollBehavior="inside"
         id="style-4"
-        // blockScrollOnMount={false}
+      // blockScrollOnMount={false}
       >
         <ModalOverlay />
         <ModalContent bg="gray.800">
@@ -122,6 +135,7 @@ function TMDB({ query }) {
                   movies.results.map((movie) => (
                     <div className="mb-4">
                       <MovieComp movie={movie} />
+                      <hr className="text-gray-700" />
                     </div>
                   ))}
                 {movies.total_results < 1 && (
@@ -177,29 +191,26 @@ function TMDB({ query }) {
 export function MovieComp({ movie }) {
   // const release_date = format(movie?.release_date, "MM/dd/yyyy");
   return (
-    <div className=" lg:flex my-2 p-2 lg:border lg:border-gray-600 bg-gray-900 transition-all duration-150 ease-linear cursor-pointer rounded-md">
-      <div className="lg:w-1/3">
+    <div className=" lg:flex my-2  p-2 transition-all duration-150 ease-linear cursor-pointer rounded-md">
+      <div className="">
         <img
           src={
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w500${movie?.poster_path}`
               : "https://via.placeholder.com/480x480.png?text=no+image+found"
           }
-          className=" object-cover w-full"
+          className="modal_poster object-scale-down w-full"
           style={{
-            height: "400px",
-            width: "400px",
+            maxHeight: "250px",
+            maxWidth: "500px",
           }}
         />
       </div>
       {/* <hr /> */}
       <div
-        className="lg:w-2/3 lg:p-3 shadow-inner overflow-x-hidden"
-        style={{
-          maxHeight: "350px",
-        }}
+        className="lg:w-3/4 lg:p-3 shadow-inner overflow-x-hidden"
       >
-        <div className=" px-2 text-xl font-semibold py-1 text-red-400 ">
+        <div className=" px-2 text-xl title font-semibold py-1 text-red-400 ">
           <span>{movie?.original_title || movie?.original_name}</span>
         </div>
         <div className="  py-1 text-red-400 ">
@@ -209,7 +220,7 @@ export function MovieComp({ movie }) {
                 format(new Date(movie?.first_air_date), "do MMMM Y"))}
           </span>
         </div>
-        <div className=" text-gray-300 px-2 text-sm lg:w-4/5 ">
+        <div className=" text-gray-300 px-2 text-sm lg:w-4/5 markdown_div">
           <span>{movie?.overview}</span>
         </div>
       </div>
