@@ -9,8 +9,7 @@ function Page({ data, title }) {
   return (
     <div className="page_layout">
       <div className="page_layout_overlay">
-
-        <Navigation />
+        {/* <Navigation /> */}
         <Helmet title={title} />
         <Tabs />
 

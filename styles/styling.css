@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 :root {
   --mainColor: #ff9800;
@@ -19,7 +20,8 @@ body {
 }
 
 .title {
-  font-family: 'Fjalla One', sans-serif;
+  /* font-family: 'Fjalla One', sans-serif; */
+  font-family: 'Fredoka One', cursive;
 
 }
 
