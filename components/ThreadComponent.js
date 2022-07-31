@@ -91,8 +91,8 @@ function MovieThreadComponent({ thread }) {
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>
         {isImage && (
-          <div className=" border-gray-500 mb-5">
-            <img src={thread?.data?.url} alt="" className="" />
+          <div className="w-full mb-3">
+            <img src={thread?.data?.url} alt="" className="w-full" />
           </div>
         )}
 

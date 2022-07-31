@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 
 :root {
   --mainColor: #ff9800;
@@ -21,7 +22,8 @@ body {
 
 .title {
   /* font-family: 'Fjalla One', sans-serif; */
-  font-family: 'Fredoka One', cursive;
+  /* font-family: 'Fredoka One', cursive; */
+  font-family: 'Bree Serif', serif;
 
 }
 

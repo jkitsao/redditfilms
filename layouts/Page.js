@@ -12,7 +12,6 @@ function Page({ data, title }) {
         {/* <Navigation /> */}
         <Helmet title={title} />
         <Tabs />
-
         <div className="pt-5 pb-8">
           {data && <MoviesComponent data={data?.data?.children} />}
         </div>

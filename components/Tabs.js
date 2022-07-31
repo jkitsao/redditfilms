@@ -7,13 +7,13 @@ function Tabs() {
   const tabs = [
     {
       name: 'Movies',
-      icon: 'https://img.icons8.com/dusk/344/movies-folder.png'
+      icon: 'https://www.iconpacks.net/icons/1/free-movie-icon-850-thumb.png'
     }, {
       name: 'Tvshows',
-      icon: 'https://img.icons8.com/office/344/retro-tv.png'
+      icon: 'https://cdn-icons-png.flaticon.com/128/6553/6553523.png'
     }, {
       name: 'Forum',
-      icon: 'https://img.icons8.com/external-filled-color-icons-papa-vector/344/external-forum-online-platforms-color-filled-filled-color-icons-papa-vector.png'
+      icon: 'https://icon-library.com/images/forum-icon-png/forum-icon-png-23.jpg'
     }
   ];
   const [activeTab, setActiveTab] = useState("movies");
@@ -28,24 +28,23 @@ function Tabs() {
   return (
     <>
       <section
-        className="sm:w-4/5 md:w-3/4 sticky top-0 z-50 lg:w-1/2 xl:w-1/3 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 lg:mx-auto p-3 text-sm lg:text-base"
+        className="sm:w-4/5 md:w-3/4 sticky top-0 z-50 bg-black lg:w-1/2 xl:w-1/3  lg:mx-auto p-3 text-sm lg:text-base"
         id="tabs"
       >
+        {/* bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-80 */}
         <div className="flex justify-center">
           {tabs.map((tab, index) => (
             <button
               key={index}
-              className={`py-2  rounded-md px-6  h-full mr-4 lg:mr-4 ${tab.name.toLocaleLowerCase() === activeTab
-                ? "  underline  text-green-300 border border-green-700"
+              className={`py-1  rounded-md px-6  h-full mr-4 lg:mr-4 ${tab.name.toLocaleLowerCase() === activeTab
+                ? "   text-red-500 border-2 border-dotted border-red-700"
                 : " text-gray-300"
                 }    transition-all hover:underline duration-150 ease-linear`}
             >
               <Link href={`/${tab.name.toLocaleLowerCase() === "movies" ? "/" : tab.name.toLocaleLowerCase()}`}>
-
-
                 <a className="w-full h-full  justify-center items-center font-normal text-center">
                   <img src={tab.icon} className="w-5 h-5 mx-auto " alt='' />
-                  <span className="text-center">
+                  <span className="text-center text-xs">
                     {tab.name}
                   </span>
                 </a>

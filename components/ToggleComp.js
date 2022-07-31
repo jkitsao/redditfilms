@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SyncLoader from "react-spinners/SyncLoader";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 function ToggleComp({
   setIsCommentsOpen,
@@ -7,43 +7,48 @@ function ToggleComp({
   setIsLoading,
   isLoading,
 }) {
-  let [color, setColor] = useState("#ffffff");
+  let [color, setColor] = useState("#f00");
 
   return (
-    <button
+    <div
       role="button"
-      className="w-full flex justify-center items-center mt-10 py-2 absolute bottom-0  focus:outline-none "
+      className="w-full flex justify-center items-center bg-transparent shadow-md mt-10 py-4 absolute bottom-0  focus:outline-none "
       onClick={() => setIsCommentsOpen(!isCommentsOpen)}
     >
       <button className="text-xs font-bold text-white">
         {isLoading && (
-          <div className="flex justify-center  items-center ">
-            <SyncLoader color={color} loading={isLoading} size={10} />
+          <div className="flex justify-center py-4 items-center ">
+            <PropagateLoader color={color} loading={isLoading} size={15} />
           </div>
         )}
         {!isLoading && (
           <div className=" transition-all duration-100">
             {isCommentsOpen ? (
-              <span>
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
-              </span>
+              <div>
+                <span>
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 15l7-7 7 7"
+                    />
+                  </svg>
+                </span>
+              </div>
             ) : (
-              <span>
+              <div className=" p-1 flex items-center">
+                <span className="text-red-700 text-sm mx-1 font-medium">
+                  🚀 Best comments
+                </span>
                 <svg
-                  className="w-6 h-6"
+                  className="w-4 h-4 font-thin text-gray-200"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -56,12 +61,12 @@ function ToggleComp({
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </span>
+              </div>
             )}
           </div>
         )}
       </button>
-    </button>
+    </div>
   );
 }
 
