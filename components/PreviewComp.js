@@ -2,7 +2,7 @@ import React from "react";
 
 export default function PreviewComp({ data, hostname }) {
   return (
-    <section className=" mx-2  rounded overflow-hidden lg:w-3/4 lg:mx-auto">
+    <section className=" mx-2  rounded overflow-hidden lg:w-5/6 lg:mx-3">
       <div className="flex bg-gray-800  shadow-lg">
         <div className="min-h-32 w-32 bg-no-repeat bg-cover"
           style={{
@@ -14,7 +14,7 @@ export default function PreviewComp({ data, hostname }) {
         <div className="flex p-3 h-full w-full justify-center items-center">
           <div className=" max-h-32 text-ellipsis">
             <span
-              className=" block text-sm text-red-500 font-semibold leading-snug text-clip overflow-auto mb-2"
+              className=" block text-sm text-red-500 font-semibold leading-snug text-clip overflow-hidden mb-2"
               style={{
                 maxHeight: "3.5rem",
               }}

@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import ToggleComp from "./ToggleComp";
 import PreviewComp from "./PreviewComp";
 import ProfileComp from "./ProfileComp";
+import Player from "./Player";
 function MovieThreadComponent({ thread }) {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [path, setPath] = useState("");
@@ -44,7 +45,9 @@ function MovieThreadComponent({ thread }) {
     if (asPath === "/forum") setPath("forum");
   }, [asPath]);
   return (
-    <div className="bg-gray-900  pb-4 select-none shadow-md m-2 justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
+    <div className="bg-gray-900  pb-4 select-none shadow-md m-2 justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative "
+      onClick={() => alert(getLocation(thread?.data.url)?.pathname.substring(1))}
+    >
       <div className=" mb-3">
         <div className="flex items-center justify-between mb-2 p-2 ">
           <ProfileComp author={thread?.data?.author} />
@@ -62,6 +65,12 @@ function MovieThreadComponent({ thread }) {
               hostname={getLocation(thread?.data.url)?.hostname}
             />
           )}
+        {thread.data?.thumbnail &&
+          getLocation(thread?.data.url)?.hostname == "youtu.be" && (
+            <div>
+              <Player id={getLocation(thread?.data.url)?.pathname.substring(1)} />
+            </div>
+          )}
         {thread?.data?.selftext && <div className="my-3 pb-2 markdown_div  text-gray-300 font-normal leading-snug prose prose-a:text-blue-400 prose-strong:text-green-400 prose-base hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-200 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>}
@@ -77,7 +86,7 @@ function MovieThreadComponent({ thread }) {
               url={thread?.data?.url}
               setIsLoading={setIsLoading}
               isLoading={isLoading}
-              data={thread?.data}
+              metadata={thread?.data}
             />
           </motion.div>
         )}

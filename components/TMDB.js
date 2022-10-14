@@ -50,7 +50,6 @@ function TMDB({ query }) {
     return query_values[queryIndex];
   };
   const query_param = query_param_init();
-
   const router = useRouter();
   const queryMovieURL = `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${query_param}`;
   const queryTvUrl = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query_param}`;
@@ -60,25 +59,22 @@ function TMDB({ query }) {
       ? queryMovieURL
       : queryTvUrl;
   //fetch movie/series info then open the modal
-  const fetchMovieInfo = () => {
-    setIsLoading(true);
-    axios
-      .get(url)
-      .then((response) => {
-        console.log({ movie_info: response.data });
-        setMovies(response.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoading(false);
-      });
-  };
-
-  const handleClick = () => {
+  const fetchContentInfo = async () => {
+    try {
+      setIsLoading(true)
+      const response = await axios.get(url)
+      setMovies(response.data)
+      setIsLoading(false)
+    }
+    catch (error) {
+      setIsLoading(false)
+      console.error(error)
+    }
+  }
+  const handleClick = async () => {
     setQueryIndex(0);
-    fetchMovieInfo();
-    onOpen();
+    await fetchContentInfo();
+    return onOpen();
   };
 
   //next movie(line break mode)
@@ -88,7 +84,7 @@ function TMDB({ query }) {
       setQueryIndex(queryIndex + 1);
     }
   };
-  useEffect(() => [fetchMovieInfo()], [queryIndex]);
+  useEffect(() => [fetchContentInfo()], [queryIndex]);
 
   return (
     <>
@@ -122,7 +118,7 @@ function TMDB({ query }) {
           <ModalBody>
             {isLoading && (
               <div className="w-full flex justify-center  items-center py-12">
-                <BounceLoader color={color} loading={isLoading} size={50} />
+                <BounceLoader color={color} loading={isLoading} size={100} />
               </div>
             )}
             {!isLoading && (
@@ -131,7 +127,6 @@ function TMDB({ query }) {
                   movies.results.map((movie) => (
                     <div className="mb-4">
                       <MovieComp movie={movie} />
-                      {/* <hr className="text-gray-700" />  */}
                     </div>
                   ))}
                 {movies.total_results < 1 && (
@@ -188,7 +183,7 @@ export function MovieComp({ movie }) {
   // const release_date = format(movie?.release_date, "MM/dd/yyyy");
   // console.log({ movie })
   return (
-    <div className=" lg:flex my-2  p-2 transition-all duration-150 ease-linear cursor-pointer rounded-md">
+    <div className=" lg:flex my-2 justify-center  p-2 transition-all duration-150 ease-linear cursor-pointer rounded-md">
       <div className=" bg-black">
         <img
           src={
@@ -204,9 +199,7 @@ export function MovieComp({ movie }) {
         />
       </div>
       {/* <hr /> */}
-      <div
-        className="lg:w-3/4 lg:p-3 shadow-inner overflow-x-hidden"
-      >
+      <div className="lg:w-3/4 lg:mx-auto lg:p-3 shadow-inner overflow-x-hidden">
         <div className=" px-2 text-xl title font-semibold py-1 text-red-400 ">
           <span>{movie?.original_title || movie?.original_name}</span>
         </div>
