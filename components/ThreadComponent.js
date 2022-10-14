@@ -44,38 +44,13 @@ function MovieThreadComponent({ thread }) {
     if (asPath === "/forum") setPath("forum");
   }, [asPath]);
   return (
-    <div className="bg-gray-900  pb-4 select-none shadow-md  justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
+    <div className="bg-gray-900  pb-4 select-none shadow-md m-2 justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
       <div className=" mb-3">
         <div className="flex items-center justify-between mb-2 p-2 ">
-          {/* <span className="text-sm text-green-400 font-semibold">
-            {thread?.data?.author}
-          </span> */}
           <ProfileComp author={thread?.data?.author} />
-          <div className=" text-gray-600 cursor-not-allowed  w-full absolute right-0  rounded opacity-50 max-h-16">
-            {/* <div className="  text-xs font-semibold p-2 ">
-              <span className=" inline-flex justify-center items-center text-center w-full">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
-              </span>
-
-              <span className="block text-center">{thread?.data?.ups}</span>
-            </div> */}
-          </div>
         </div>
         <div className="px-2  mt-5 ">
-          <span className=" block text-yellow-500 text-xl my-2 title tracking-wide">
+          <span className=" block text-yellow-600 text-xl my-2 font-semibold title tracking-wide">
             {thread?.data?.title}
             {/* {getHostname(thread?.data.url)} */}
           </span>
@@ -87,17 +62,17 @@ function MovieThreadComponent({ thread }) {
               hostname={getLocation(thread?.data.url)?.hostname}
             />
           )}
-        <div className="my-3 mb-10 pb-2 markdown_div text-gray-300 font-normal leading-snug prose prose-a:text-blue-400 prose-strong:text-green-400 prose-base hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-200 p-2">
+        {thread?.data?.selftext && <div className="my-3 pb-2 markdown_div  text-gray-300 font-normal leading-snug prose prose-a:text-blue-400 prose-strong:text-green-400 prose-base hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-200 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
-        </div>
+        </div>}
         {isImage && (
-          <div className="w-full mb-3">
+          <div className="w-full my-3">
             <img src={thread?.data?.url} alt="" className="w-full" />
           </div>
         )}
 
         {isCommentsOpen && (
-          <motion.div>
+          <motion.div className="my-2">
             <CommentsThreadComp
               url={thread?.data?.url}
               setIsLoading={setIsLoading}
@@ -107,12 +82,14 @@ function MovieThreadComponent({ thread }) {
           </motion.div>
         )}
       </div>
-      <ToggleComp
-        setIsCommentsOpen={setIsCommentsOpen}
-        isCommentsOpen={isCommentsOpen}
-        setIsLoading={setIsLoading}
-        isLoading={isLoading}
-      />
+      <div className="">
+        <ToggleComp
+          setIsCommentsOpen={setIsCommentsOpen}
+          isCommentsOpen={isCommentsOpen}
+          setIsLoading={setIsLoading}
+          isLoading={isLoading}
+        />
+      </div>
     </div>
   );
 }

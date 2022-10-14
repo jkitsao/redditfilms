@@ -1,22 +1,31 @@
 import Page from "../layouts/Page";
-
-export default function Home({ data }) {
-  return (
-
-    <Page data={data} title="movies | r/MovieSuggestions" />
-
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
+async function getPosts() {
+  const subreddit = "MovieSuggestions";
+  const res = await fetch(
+    `https://www.reddit.com/r/${subreddit}.json?limit=400`
   );
+  const data = await res.json();
+  return data
+}
+
+export default function Home(props) {
+  const { data } = useQuery(['movies'], getPosts, { initialData: props.data })
+  return <Page data={data} title="movies | r/MovieSuggestions" />
 }
 
 //fetch reddit data from r/moviesuggestions && r/movies
 export async function getServerSideProps() {
   // Fetch data from external API
-  const subreddit = "MovieSuggestions";
-  const res = await fetch(
-    `https://www.reddit.com/r/${subreddit}.json?limit=100`
-  );
-  const data = await res.json();
-
+  // const data = await getPosts()
   // Pass data to the page via props
-  return { props: { data } };
+  // return { props: { data } };
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery(['movies'], getPosts)
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
 }

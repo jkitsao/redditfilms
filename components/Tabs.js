@@ -7,13 +7,13 @@ function Tabs() {
   const tabs = [
     {
       name: 'Movies',
-      icon: 'https://www.iconpacks.net/icons/1/free-movie-icon-850-thumb.png'
+      icon: '/assets/movies-tab.png'
     }, {
       name: 'Tvshows',
-      icon: 'https://cdn-icons-png.flaticon.com/128/6553/6553523.png'
+      icon: '/assets/tv-tab.png'
     }, {
       name: 'Forum',
-      icon: 'https://icon-library.com/images/forum-icon-png/forum-icon-png-23.jpg'
+      icon: '/assets/forum.jpg'
     }
   ];
   const [activeTab, setActiveTab] = useState("movies");

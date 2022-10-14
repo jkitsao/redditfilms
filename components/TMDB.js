@@ -20,7 +20,6 @@ function TMDB({ query }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   let [color, setColor] = useState("#ffffff");
   let [queryIndex, setQueryIndex] = useState(0);
   // remove values inside ()
@@ -52,7 +51,6 @@ function TMDB({ query }) {
   };
   const query_param = query_param_init();
 
-  //
   const router = useRouter();
   const queryMovieURL = `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${query_param}`;
   const queryTvUrl = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query_param}`;
@@ -61,7 +59,6 @@ function TMDB({ query }) {
     router.asPath === "/" || router.asPath === "/movies"
       ? queryMovieURL
       : queryTvUrl;
-
   //fetch movie/series info then open the modal
   const fetchMovieInfo = () => {
     setIsLoading(true);
@@ -89,7 +86,6 @@ function TMDB({ query }) {
   const handleNextMovieLineBreak = () => {
     if (queryIndex < query_values.length) {
       setQueryIndex(queryIndex + 1);
-      // () => fetchMovieInfo();
     }
   };
   useEffect(() => [fetchMovieInfo()], [queryIndex]);
@@ -99,12 +95,12 @@ function TMDB({ query }) {
       {/* <Button onClick={onOpen}>Open Modal</Button> */}
       <button
         onClick={() => handleClick()}
-        className=" text-orange-300  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2  my-2 cursor-pointer rounded transition-all duration-200"
+        className=" text-orange-300  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2 flex items-center  my-2 cursor-pointer rounded transition-all duration-200"
       >
-        <span>
-          <img src='https://img.icons8.com/avantgarde/344/experimental-about-avantgarde.png' className=" inline-flex items-center w-5 h-5 mx-1" alt='about' />
+        <div>
+          <img src='/assets/movie-icon.png' className=" inline-flex items-center w-5 h-5 mx-1" alt='about' />
           {router.asPath === "/tvshows" ? "series" : "movie"} information
-        </span>
+        </div>
       </button>
 
       <Modal
@@ -135,7 +131,7 @@ function TMDB({ query }) {
                   movies.results.map((movie) => (
                     <div className="mb-4">
                       <MovieComp movie={movie} />
-                      <hr className="text-gray-700" />
+                      {/* <hr className="text-gray-700" />  */}
                     </div>
                   ))}
                 {movies.total_results < 1 && (
@@ -190,6 +186,7 @@ function TMDB({ query }) {
 
 export function MovieComp({ movie }) {
   // const release_date = format(movie?.release_date, "MM/dd/yyyy");
+  console.log({ movie })
   return (
     <div className=" lg:flex my-2  p-2 transition-all duration-150 ease-linear cursor-pointer rounded-md">
       <div className="">
@@ -197,7 +194,7 @@ export function MovieComp({ movie }) {
           src={
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w500${movie?.poster_path}`
-              : "https://via.placeholder.com/480x480.png?text=no+image+found"
+              : "https://via.placeholder.com/480x480.png?text=File+Not+found"
           }
           className="modal_poster object-scale-down w-full"
           style={{
@@ -217,7 +214,7 @@ export function MovieComp({ movie }) {
           <span className=" inline-block mx-2 text-green-300 font-normal text-sm">
             {movie?.release_date ||
               (movie?.first_air_date &&
-                format(new Date(movie?.first_air_date), "do MMMM Y"))}
+                format(new Date(movie?.first_air_date), "dd MMMM Y"))}
           </span>
         </div>
         <div className=" text-gray-300 px-2 text-sm lg:w-4/5 markdown_div">

@@ -2,18 +2,14 @@ import React from "react";
 
 export default function PreviewComp({ data, hostname }) {
   return (
-    <section className=" mx-2  rounded overflow-hidden  lg:w-3/4">
-      <div className="flex bg-black  shadow-lg">
-        <div className="h-24 w-32 bg-no-repeat bg-cover"
+    <section className=" mx-2  rounded overflow-hidden lg:w-3/4 lg:mx-auto">
+      <div className="flex bg-gray-800  shadow-lg">
+        <div className="min-h-32 w-32 bg-no-repeat bg-cover"
           style={{
-            backgroundImage: `url(${data?.thumbnail})`
+            backgroundImage: `url(${data?.thumbnail})`,
+            backgroundPosition: 'center'
           }}
         >
-          {/* <img
-            src={data?.thumbnail}
-            alt=""
-            className="h-full object-contain"
-          /> */}
         </div>
         <div className="flex p-3 h-full w-full justify-center items-center">
           <div className=" max-h-32 text-ellipsis">
