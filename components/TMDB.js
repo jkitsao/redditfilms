@@ -186,10 +186,10 @@ function TMDB({ query }) {
 
 export function MovieComp({ movie }) {
   // const release_date = format(movie?.release_date, "MM/dd/yyyy");
-  console.log({ movie })
+  // console.log({ movie })
   return (
     <div className=" lg:flex my-2  p-2 transition-all duration-150 ease-linear cursor-pointer rounded-md">
-      <div className="">
+      <div className=" bg-black">
         <img
           src={
             movie.poster_path
