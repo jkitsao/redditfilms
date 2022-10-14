@@ -13,7 +13,7 @@ function Tabs() {
       icon: '/assets/tv-tab.png'
     }, {
       name: 'Forum',
-      icon: '/assets/forum.jpg'
+      icon: '/assets/forum-tab.jpg'
     }
   ];
   const [activeTab, setActiveTab] = useState("movies");

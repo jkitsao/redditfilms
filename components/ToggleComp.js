@@ -24,9 +24,9 @@ function ToggleComp({
         </div>
       )}
       {!isLoading && (
-        <div className=" transition-all duration-100">
+        <div className=" transition-all duration-100 w-full">
           {isCommentsOpen ? (
-            <div className="w-full justify-center items-center">
+            <div className="w-full flex justify-center items-center">
               <span>
                 <svg
                   className="w-6 h-6"
