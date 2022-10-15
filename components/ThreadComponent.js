@@ -46,7 +46,6 @@ function MovieThreadComponent({ thread }) {
   }, [asPath]);
   return (
     <div className="bg-gray-900  pb-4 select-none shadow-md m-2 justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative "
-      onClick={() => alert(getLocation(thread?.data.url)?.pathname.substring(1))}
     >
       <div className=" mb-3">
         <div className="flex items-center justify-between mb-2 p-2 ">

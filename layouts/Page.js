@@ -7,17 +7,19 @@ import Helmet from "../components/Helmet";
 
 function Page({ data, title }) {
   return (
-    <div className="page_layout">
-      <div className="page_layout_overlay">
-        {/* <Navigation /> */}
-        <Helmet title={title} />
-        <Tabs />
-        <div className="pt-5 pb-8">
-          {data && <MoviesComponent data={data?.data?.children} />}
+    <>
+      <div className="page_layout">
+        <div className="page_layout_overlay">
+          {/* <Navigation /> */}
+          <Helmet title={title} />
+          <Tabs />
+          <div className="pt-5 pb-8">
+            {data && <MoviesComponent data={data?.data?.children} />}
+          </div>
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

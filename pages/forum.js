@@ -3,7 +3,7 @@ import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
 async function getPosts() {
   const subreddit = "movies";
   const res = await fetch(
-    `https://www.reddit.com/r/${subreddit}.json?limit=200`
+    `https://www.reddit.com/r/${subreddit}.json?limit=400`
   );
   const data = await res.json();
   return data
