@@ -124,8 +124,8 @@ function TMDB({ query }) {
             {!isLoading && (
               <div className=" py-3 px-2">
                 {movies.total_results > 0 &&
-                  movies.results.map((movie) => (
-                    <div className="mb-4">
+                  movies.results.map((movie, index) => (
+                    <div className="mb-4" key={index}>
                       <MovieComp movie={movie} />
                     </div>
                   ))}
