@@ -8,9 +8,6 @@ import TMDB from "./TMDB";
 function CommentsComp({ comments }) {
   const router = useRouter();
   const { asPath } = router;
-  useEffect(() => {
-    console.log({ comments });
-  }, [comments]);
   return (
     <div
       className="overflow-y-auto mb-5 bg-slate-800 shadow-xl"

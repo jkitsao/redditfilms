@@ -16,13 +16,8 @@ export default function Home(props) {
 
 //fetch reddit data from r/moviesuggestions && r/movies
 export async function getServerSideProps() {
-  // Fetch data from external API
-  // const data = await getPosts()
-  // Pass data to the page via props
-  // return { props: { data } };
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(['movies'], getPosts)
-
   return {
     props: {
       dehydratedState: dehydrate(queryClient),

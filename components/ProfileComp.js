@@ -37,14 +37,14 @@ function ProfileComp({ author }) {
               // src={user?.snoovatar_img}
               src='https://img.icons8.com/fluency/344/reddit.png'
               alt=""
-              className="w-10 h-10  shadow-xl bg-gray-50 p-1 object-cover"
+              className="w-8 rounded-full  h-8  shadow-xl bg-gray-50 p-1 object-cover"
               onError={(e) => {
                 e.target.src = "https://img.icons8.com/fluency/344/reddit.png"; //  replacement image[user?.icon_img]
               }}
             />
           </div>
           <div className="mx-2 px-2 ">
-            <span className="text-red-600 text-sm   markdown_div">
+            <span className="text-red-800 font-semibold text-sm markdown_div">
               u/{author}
             </span>
           </div>
