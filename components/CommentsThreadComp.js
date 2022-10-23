@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CommentsComp from "./CommentsComp";
+import { motion, AnimatePresence } from "framer-motion"
 import {
   useQuery,
   useMutation,
@@ -31,13 +32,28 @@ function CommentsThreadComp({ url, setIsLoading, isLoading, metadata }) {
   }, []);
   return (
     <>
-      <div>
-        {!isLoading && (
-          <div className="w-full ">
-            <CommentsComp comments={comments} />
-          </div>
-        )}
-      </div>
+      <motion.div>
+        <AnimatePresence mode='wait'>
+          {!isLoading && (
+            <motion.div className="w-full"
+              initial={{
+                height: 0,
+              }}
+              animate={{
+                height: "auto",
+                transition: {
+                  height: {
+                    duration: 0.15,
+                  },
+
+                },
+              }}
+            >
+              <CommentsComp comments={comments} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </>
   );
 }

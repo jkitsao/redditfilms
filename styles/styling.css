@@ -9,6 +9,9 @@
   --mainColor: #ff9800;
 }
 
+html {
+  scroll-snap-type: y mandatory
+}
 
 body {
   -webkit-tap-highlight-color: transparent;

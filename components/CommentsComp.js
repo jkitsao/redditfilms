@@ -10,7 +10,7 @@ function CommentsComp({ comments }) {
   const { asPath } = router;
   return (
     <div
-      className="overflow-y-auto mb-5 bg-slate-800 shadow-xl"
+      className="overflow-y-auto mb-5 bg-gray-900 shadow-xl"
       id="style-4"
       style={{
         maxHeight: "400px",
@@ -20,7 +20,7 @@ function CommentsComp({ comments }) {
         comments?.data?.children.map((comment, index) => (
           <div
             key={index}
-            className=" text-gray-100  bg-slate-900 shadow-lg  rounded p-3 m-3 "
+            className=" text-gray-100  bg-black bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 border border-gray-800 shadow-lg  rounded p-3 m-3 "
           >
             <div className="text-red-400 text-xs font-mono">
               {comment?.data?.author}

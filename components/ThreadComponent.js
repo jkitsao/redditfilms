@@ -5,7 +5,7 @@ import CommentsThreadComp from "./CommentsThreadComp";
 // import { Anchorme } from "react-anchorme";
 import ReactMarkdown from "react-markdown";
 import parse from "html-react-parser";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"
 import ToggleComp from "./ToggleComp";
 import PreviewComp from "./PreviewComp";
 import ProfileComp from "./ProfileComp";
@@ -35,7 +35,6 @@ function MovieThreadComponent({ thread }) {
     );
   }
   // console.log(getLocation(thread?.data.url)?.hostname);
-
   const router = useRouter();
   const { asPath } = router;
   //set path base on current path
@@ -44,10 +43,18 @@ function MovieThreadComponent({ thread }) {
     if (asPath === "/television") setPath("television");
     if (asPath === "/forum") setPath("forum");
   }, [asPath]);
+
+  const variants = {
+    open: { opacity: 1, height: '100%' },
+    closed: { opacity: 0, height: 0 },
+    transition: { duration: 5 }
+  }
+
   return (
-    <div className="bg-gray-900  pb-4 select-none shadow-md m-2 justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative "
-    >
-      <div className=" mb-3">
+
+    <div className="bg-gray-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70   pb-4 select-none shadow-md m-2 justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
+      <motion.div className=" mb-3"
+      >
         <div className="flex items-center justify-between mb-2 p-2 ">
           <ProfileComp author={thread?.data?.author} />
         </div>
@@ -70,7 +77,7 @@ function MovieThreadComponent({ thread }) {
               <Player id={getLocation(thread?.data.url)?.pathname.substring(1)} />
             </div>
           )}
-        {thread?.data?.selftext && <div className="my-3 pb-2 markdown_div  text-gray-300 font-normal leading-snug prose prose-a:text-blue-400 prose-strong:text-green-400 prose-base hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-200 p-2">
+        {thread?.data?.selftext && <div className="my-3 pb-2 markdown_div  text-yellow-50 font-normal leading-snug prose prose-a:text-blue-400 prose-strong:text-green-400 prose-base hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-200 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>}
         {isImage && (
@@ -79,17 +86,28 @@ function MovieThreadComponent({ thread }) {
           </div>
         )}
 
-        {isCommentsOpen && (
-          <motion.div className="my-2">
-            <CommentsThreadComp
-              url={thread?.data?.url}
-              setIsLoading={setIsLoading}
-              isLoading={isLoading}
-              metadata={thread?.data}
-            />
-          </motion.div>
-        )}
-      </div>
+        <AnimatePresence>
+          {isCommentsOpen && (
+            <motion.div className="my-2"
+              exit={{
+                height: 0,
+                transition: {
+                  height: {
+                    duration: 0.15,
+                  },
+                },
+              }}
+            >
+              <CommentsThreadComp
+                url={thread?.data?.url}
+                setIsLoading={setIsLoading}
+                isLoading={isLoading}
+                metadata={thread?.data}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
       <div className="">
         <ToggleComp
           setIsCommentsOpen={setIsCommentsOpen}
@@ -99,6 +117,7 @@ function MovieThreadComponent({ thread }) {
         />
       </div>
     </div>
+
   );
 }
 

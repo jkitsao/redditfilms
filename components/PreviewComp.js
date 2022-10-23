@@ -7,14 +7,17 @@ export default function PreviewComp({ data, hostname }) {
         <div className="min-h-32 w-32 bg-no-repeat bg-cover"
           style={{
             backgroundImage: `url(${data?.thumbnail})`,
-            backgroundPosition: 'center'
+            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+            backgroundColor: 'black'
+
           }}
         >
         </div>
         <div className="flex p-3 h-full w-full justify-center items-center">
           <div className=" max-h-32 text-ellipsis">
             <span
-              className=" block text-sm text-red-500 font-semibold leading-snug text-clip overflow-hidden mb-2"
+              className=" block text-sm text-red-500 font-semibold leading-snug text-clip overflow-hidden hover:underline transition-all duration-200 mb-2"
               style={{
                 maxHeight: "3.5rem",
               }}

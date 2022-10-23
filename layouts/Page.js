@@ -8,7 +8,7 @@ import Helmet from "../components/Helmet";
 function Page({ data, title }) {
   return (
     <>
-      <div className="page_layout">
+      <div className="page_layout min-h-screen">
         <div className="page_layout_overlay">
           {/* <Navigation /> */}
           <Helmet title={title} />
@@ -17,8 +17,8 @@ function Page({ data, title }) {
             {data && <MoviesComponent data={data?.data?.children} />}
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }

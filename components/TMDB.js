@@ -14,6 +14,7 @@ import {
 import format from "date-fns/format";
 import CommentsComp from "./CommentsComp";
 import BounceLoader from "react-spinners/BounceLoader";
+import useParamParser from "../hooks/useParamParser";
 const api_key = process.env.NEXT_PUBLIC_TMDB_KEY;
 
 function TMDB({ query }) {
@@ -21,35 +22,7 @@ function TMDB({ query }) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   let [color, setColor] = useState("#ffffff");
-  let [queryIndex, setQueryIndex] = useState(0);
-  // remove values inside ()
-  const a = query.replace(/ *\([^)]*\) */g, "");
-  //get values before a comma
-  // const b = a.replace(/,[^,]+$/, "");
-  //check for line breaks
-  let query_values = [];
-  let line_values = [];
-  let coma_values = []
-  //check for strings separated by coma and push that to array
-  if (a.includes(',')) {
-    coma_values = a.split(",").filter(function (el) {
-      return el != "";
-    });
-  }
-  //check for strings separated by line and push that to array
-  const line = (a.match(/\n/g) || []).length;
-  if (line > 0) {
-    line_values = a.split("\n").filter(function (el) {
-      return el != "";
-    });
-  }
-  //construct query param
-  const query_param_init = () => {
-    query_values = line_values.concat(coma_values)
-    if (query_values.length < 1) return a;
-    return query_values[queryIndex];
-  };
-  const query_param = query_param_init();
+  const { query_param, queryIndex, setQueryIndex, query_values } = useParamParser(query)
   const router = useRouter();
   const queryMovieURL = `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${query_param}`;
   const queryTvUrl = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query_param}`;
@@ -78,7 +51,6 @@ function TMDB({ query }) {
   };
 
   //next movie(line break mode)
-
   const handleNextMovieLineBreak = () => {
     if (queryIndex < query_values.length) {
       setQueryIndex(queryIndex + 1);
@@ -91,10 +63,11 @@ function TMDB({ query }) {
       {/* <Button onClick={onOpen}>Open Modal</Button> */}
       <button
         onClick={() => handleClick()}
-        className=" text-orange-300  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2 flex items-center  my-2 cursor-pointer rounded transition-all duration-200"
+        disabled={query_param.length > 40}
+        className={`text-orange-300  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2 flex items-center  my-2 cursor-pointer rounded transition-all duration-200 ${query_param.length > 40 && 'line-through text-red-700'}`}
       >
         <div>
-          <img src='/assets/movie-icon.png' className=" inline-flex items-center w-5 h-5 mx-1" alt='about' />
+          {query_param.length < 40 && <img src='/assets/movie-icon.png' className=" inline-flex items-center w-5 h-5 mx-1" alt='about' />}
           {router.asPath === "/tvshows" ? "series" : "movie"} information
         </div>
       </button>
@@ -103,13 +76,12 @@ function TMDB({ query }) {
         isOpen={isOpen}
         onClose={onClose}
         size="2xl"
-        bg="gray.700"
         scrollBehavior="inside"
         id="style-4"
       // blockScrollOnMount={false}
       >
         <ModalOverlay />
-        <ModalContent bg="gray.800">
+        <ModalContent bg="black">
           <ModalHeader color="yellow.300">
             {/* {query_values.length < 1 && query} */}
             {query_values.length > 1 && query_values[queryIndex]}
@@ -133,11 +105,11 @@ function TMDB({ query }) {
                   <div className="flex justify-center">
                     <div className="text-center">
                       <img
-                        src="https://i.gifer.com/origin/50/5080c448c4a2664c271bd1c5e7593c6d_w200.gif"
-                        className="w-full object-cover"
+                        src="https://cdn-icons-png.flaticon.com/512/4826/4826313.png"
+                        className=" object-cover w-64 h-64 mx-auto"
                       />
                       <div className="text-lg text-red-500 font-semibold p-2">
-                        `{query_param}` not found
+                        `{query_param}` is not valid
                       </div>
                     </div>
                   </div>
@@ -149,6 +121,7 @@ function TMDB({ query }) {
                 <button
                   className=" left-0   flex   justify-center items-center absolute bottom-0 text-green-300 mx-2 bg-gray-900 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300  rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800 dark:border-gray-700"
                   onClick={handleNextMovieLineBreak}
+                  disabled={query_param.length > 40}
                 >
                   <span>
                     <svg
@@ -204,13 +177,18 @@ export function MovieComp({ movie }) {
           <span>{movie?.original_title || movie?.original_name}</span>
         </div>
         <div className="  py-1 text-red-400 ">
-          <span className=" inline-block mx-2 text-green-300 font-normal text-sm">
+          {/* <span className=" inline-block mx-2 text-green-300 font-normal text-sm">
             {movie?.release_date ||
               (movie?.first_air_date &&
-                format(new Date(movie?.first_air_date), "dd MMMM Y"))}
+                format(new Date(movie?.first_air_date), "dd MMMM yy"))}
+          </span> */}
+          <span className=" inline-block mx-2 text-green-300 font-normal text-sm">
+            {movie.release_date ? format(new Date(movie?.release_date), "dd MMMM yyyy") :
+              format(new Date(movie?.first_air_date), "dd MMMM yyyy")
+            }
           </span>
         </div>
-        <div className=" text-gray-300 px-2 text-sm lg:w-4/5 markdown_div">
+        <div className=" text-gray-300 px-2 text-sm w-full lg:w-4/5  p-2  shadow-md">
           <span>{movie?.overview}</span>
         </div>
       </div>
