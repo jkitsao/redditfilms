@@ -37,7 +37,7 @@ function ProfileComp({ author }) {
               // src={user?.snoovatar_img}
               src='/assets/reddit-icon.png'
               alt=""
-              className="w-8 rounded-full  h-8  shadow-2xl bg-gray-800 p-1 object-cover"
+              className="w-8 rounded-full border h-8  shadow-2xl bg-gray-800 p-1 object-cover"
               onError={(e) => {
                 e.target.src = "/assets/reddit-icon.png"; //  replacement image[user?.icon_img]
               }}
