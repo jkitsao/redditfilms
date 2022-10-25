@@ -7,8 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Helmet from '../components/Helmet'
 import React from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
-//detect route change
-
+//detect route change and show Nprogress
 Router.events.on("routeChangeStart", nProgress.start);
 Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);

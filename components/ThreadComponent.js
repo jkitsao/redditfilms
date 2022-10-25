@@ -10,6 +10,7 @@ import ToggleComp from "./ToggleComp";
 import PreviewComp from "./PreviewComp";
 import ProfileComp from "./ProfileComp";
 import Player from "./Player";
+import Upvote from "./Upvote";
 function MovieThreadComponent({ thread }) {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const [path, setPath] = useState("");
@@ -54,12 +55,14 @@ function MovieThreadComponent({ thread }) {
 
     <div className="bg-gray-900 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-70   pb-4 select-none shadow-md m-2 justify-between   rounded cursor-pointer  transition-all duration-150 ease-linear thread_div whitespace-pre-wrap relative ">
       <motion.div className=" mb-3"
+
       >
-        <div className="flex items-center justify-between mb-2 p-2 ">
+        <div className="flex items-center justify-between mb-2 p-2">
           <ProfileComp author={thread?.data?.author} />
+          <Upvote thread={thread} />
         </div>
         <div className="px-2  mt-5 ">
-          <span className=" block text-yellow-600 text-xl my-2 font-semibold title tracking-wide">
+          <span className=" block text-yellow-600 text-xl lg:text-2xl my-2 font-semibold title tracking-wide">
             {thread?.data?.title}
             {/* {getHostname(thread?.data.url)} */}
           </span>
@@ -77,7 +80,7 @@ function MovieThreadComponent({ thread }) {
               <Player id={getLocation(thread?.data.url)?.pathname.substring(1)} />
             </div>
           )}
-        {thread?.data?.selftext && <div className="my-3 pb-2 markdown_div  text-yellow-50 font-normal leading-snug prose prose-a:text-blue-400 prose-strong:text-green-400 prose-base hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-200 p-2">
+        {thread?.data?.selftext && <div className="my-3 pb-2 markdown_div  text-gray-400 font-normal leading-snug prose prose-a:text-blue-400 prose-strong:text-green-400 prose-base hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-200 p-2">
           <ReactMarkdown>{thread?.data?.selftext}</ReactMarkdown>
         </div>}
         {isImage && (
@@ -93,7 +96,8 @@ function MovieThreadComponent({ thread }) {
                 height: 0,
                 transition: {
                   height: {
-                    duration: 0.15,
+                    duration: 0.07,
+                    type: 'spring'
                   },
                 },
               }}

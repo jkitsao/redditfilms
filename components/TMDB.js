@@ -156,7 +156,7 @@ export function MovieComp({ movie }) {
   // const release_date = format(movie?.release_date, "MM/dd/yyyy");
   // console.log({ movie })
   return (
-    <div className=" lg:flex my-2 justify-center  p-2 transition-all duration-150 ease-linear cursor-pointer rounded-md">
+    <div className=" lg:flex my-2 justify-center items-center  p-2 transition-all duration-150 ease-linear cursor-pointer rounded-md">
       <div className=" bg-black">
         <img
           src={
@@ -177,15 +177,9 @@ export function MovieComp({ movie }) {
           <span>{movie?.original_title || movie?.original_name}</span>
         </div>
         <div className="  py-1 text-red-400 ">
-          {/* <span className=" inline-block mx-2 text-green-300 font-normal text-sm">
-            {movie?.release_date ||
-              (movie?.first_air_date &&
-                format(new Date(movie?.first_air_date), "dd MMMM yy"))}
-          </span> */}
           <span className=" inline-block mx-2 text-green-300 font-normal text-sm">
-            {movie.release_date ? format(new Date(movie?.release_date), "dd MMMM yyyy") :
-              format(new Date(movie?.first_air_date), "dd MMMM yyyy")
-            }
+            {movie.release_date && format(new Date(movie?.release_date), "dd MMMM yyyy")}
+            {movie.first_air_date && format(new Date(movie?.first_air_date), "dd MMMM yyyy")}
           </span>
         </div>
         <div className=" text-gray-300 px-2 text-sm w-full lg:w-4/5  p-2  shadow-md">

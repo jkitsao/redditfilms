@@ -16,7 +16,7 @@ function useParamParser(query) {
             return el != "";
         });
     }
-    // get first substring after
+    // get first substring after : and .
     function parseString(string) {
         if (string.includes('.')) {
             var newString = string.substr(0, string.indexOf('.'));

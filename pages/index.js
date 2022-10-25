@@ -8,9 +8,8 @@ async function getPosts() {
   const data = await res.json();
   return data
 }
-
 export default function Home(props) {
-  const { data } = useQuery(['movies'], getPosts, { initialData: props.data })
+  const { data, isLoading } = useQuery(['movies'], getPosts, { initialData: props.data })
   return <Page data={data} title="movies | r/MovieSuggestions" />
 }
 

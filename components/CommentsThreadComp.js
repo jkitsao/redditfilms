@@ -4,32 +4,23 @@ import CommentsComp from "./CommentsComp";
 import { motion, AnimatePresence } from "framer-motion"
 import {
   useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
 } from '@tanstack/react-query'
 import { getComments } from '../utils/api'
-function CommentsThreadComp({ url, setIsLoading, isLoading, metadata }) {
+function CommentsThreadComp({ url, metadata, setIsLoading }) {
+  // setIsLoading, isLoading,
   const baseURl = `https://www.reddit.com/${metadata?.permalink}.json`;
-  const isImage = metadata?.preview ? true : false;
-  const [comments, setComments] = useState([]);
-  let [color, setColor] = useState("#ffffff");
+  // const isImage = metadata?.preview ? true : false;
+  async function fetchComments() {
+    const res = await fetch(
+      baseURl
+    );
+    const data = await res.json();
+    return data
+  }
+  const { data, isLoading } = useQuery(['comments'], fetchComments)
   useEffect(() => {
-    (
-      async function () {
-        try {
-          setIsLoading(true)
-          const response = await axios.get(baseURl)
-          if (response.data[1]) setComments(response.data[1]);
-          setIsLoading(fale)
-        }
-        catch (error) {
-          setIsLoading(false)
-          console.error(error)
-        }
-      }
-    )()
-  }, []);
+    setIsLoading(isLoading)
+  }, [isLoading])
   return (
     <>
       <motion.div>
@@ -43,13 +34,14 @@ function CommentsThreadComp({ url, setIsLoading, isLoading, metadata }) {
                 height: "auto",
                 transition: {
                   height: {
-                    duration: 0.15,
+                    duration: 0.1,
+                    type: 'keyframes'
                   },
 
                 },
               }}
             >
-              <CommentsComp comments={comments} />
+              <CommentsComp comments={data[1]} />
             </motion.div>
           )}
         </AnimatePresence>
