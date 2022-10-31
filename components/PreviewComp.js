@@ -17,14 +17,14 @@ export default function PreviewComp({ data, hostname }) {
         <div className="flex p-3 h-full w-full justify-center items-center">
           <div className=" max-h-32 text-ellipsis">
             <span
-              className=" block text-sm text-red-500 font-semibold leading-snug text-clip overflow-hidden hover:underline transition-all duration-200 mb-2"
+              className=" block text-sm text-green-100 font-semibold leading-snug text-clip overflow-hidden hover:underline transition-all duration-200 mb-2"
               style={{
                 maxHeight: "3.5rem",
               }}
             >
               {data?.title}
             </span>
-            <span className="text-xs text-blue-200 leading-tight underline inline-flex ">
+            <span className="text-xs text-blue-300 leading-tight underline inline-flex ">
               <svg
                 className="w-4 h-4"
                 fill="none"

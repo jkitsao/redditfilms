@@ -3,7 +3,7 @@ export const config = {
     runtime: 'experimental-edge',
 };
 
-export default function () {
+export default async function handler() {
     return new ImageResponse(
         (
             <div

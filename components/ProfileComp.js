@@ -44,7 +44,7 @@ function ProfileComp({ author }) {
             />
           </div>
           <div className="mx-2 px-2 ">
-            <span className="text-red-800 font-semibold text-sm markdown_div">
+            <span className="text-gray-500 font-semibold text-sm markdown_div">
               u/{author}
             </span>
           </div>

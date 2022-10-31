@@ -11,7 +11,7 @@ function ToggleComp({
 
   return (
 
-    <button className="text-xs font-bold text-white mt-2 w-full "
+    <button className="text-xs font-bold text-white  w-full "
       onClick={() => setIsCommentsOpen(!isCommentsOpen)}
     >
       {isLoading && (
@@ -41,12 +41,12 @@ function ToggleComp({
               </span>
             </div>
           ) : (
-            <div className=" p-1 flex items-center w-full justify-center">
-              <span className="text-red-700 text-sm  font-medium">
+            <div className=" p-1 text-gray-300 flex items-center w-full justify-center">
+              <span className=" text-sm  font-medium">
                 🚀 Best comments
               </span>
               <svg
-                className="w-5 h-5 font-semibold text-red-700"
+                className="w-5 h-5 font-semibold "
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

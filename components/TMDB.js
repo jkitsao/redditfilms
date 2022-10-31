@@ -82,7 +82,7 @@ function TMDB({ query }) {
       >
         <ModalOverlay />
         <ModalContent bg="black">
-          <ModalHeader color="yellow.300">
+          <ModalHeader color="green.300">
             {/* {query_values.length < 1 && query} */}
             {query_values.length > 1 && query_values[queryIndex]}
           </ModalHeader>

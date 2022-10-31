@@ -20,8 +20,10 @@
     "date-fns": "^2.28.0",
     "framer-motion": "5",
     "html-react-parser": "^1.4.4",
+    "ioredis": "^5.2.3",
     "next": "latest",
     "next-pwa": "^5.5.4",
+    "node-fetch": "^3.2.10",
     "nprogress": "^0.2.0",
     "react": "^17.0.2",
     "react-anchorme": "^2.2.1",
@@ -29,7 +31,8 @@
     "react-js-loader": "^0.1.0",
     "react-markdown": "^7.1.1",
     "react-player": "^2.11.0",
-    "react-spinners": "^0.11.0"
+    "react-spinners": "^0.11.0",
+    "satori": "^0.0.43"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",

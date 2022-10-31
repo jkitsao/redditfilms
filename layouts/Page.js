@@ -8,7 +8,7 @@ import Helmet from "../components/Helmet";
 function Page({ data, title }) {
   return (
     <>
-      <div className="page_layout min-h-screen">
+      <div className="page_layout min-h-screen h-full">
         <div className="page_layout_overlay">
           {/* <Navigation /> */}
           <Helmet title={title} />

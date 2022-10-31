@@ -25,7 +25,7 @@ function CommentsThreadComp({ url, metadata, setIsLoading }) {
     <>
       <motion.div>
         <AnimatePresence mode='wait'>
-          {!isLoading && (
+          {!isLoading ? (
             <motion.div className="w-full"
               initial={{
                 height: 0,
@@ -43,7 +43,12 @@ function CommentsThreadComp({ url, metadata, setIsLoading }) {
             >
               <CommentsComp comments={data[1]} />
             </motion.div>
-          )}
+          )
+            :
+            <div>
+              Loading...
+            </div>
+          }
         </AnimatePresence>
       </motion.div>
     </>

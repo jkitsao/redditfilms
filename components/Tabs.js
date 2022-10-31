@@ -37,7 +37,7 @@ function Tabs() {
             <button
               key={index}
               className={`py-1  rounded-md px-6  h-full mr-4 lg:mr-4 ${tab.name.toLocaleLowerCase() === activeTab
-                ? "   text-red-500 border-2 border-dotted border-red-700"
+                ? "   text-green-200 border-2 border-dotted border-green-300"
                 : " text-gray-300"
                 }    transition-all hover:underline duration-150 ease-linear`}
             >

@@ -1,4 +1,5 @@
 import Page from "../layouts/Page";
+import redis from '../lib/redis'
 import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
 async function getPosts() {
   const subreddit = "MovieSuggestions";
@@ -6,6 +7,9 @@ async function getPosts() {
     `https://www.reddit.com/r/${subreddit}.json?limit=400`
   );
   const data = await res.json();
+  // movies=data?.data?.children
+  // console.table({ data })
+  // await redis.set('movie-listings=1', JSON.stringify(data))
   return data
 }
 export default function Home(props) {
