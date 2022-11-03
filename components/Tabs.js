@@ -37,18 +37,17 @@ function Tabs() {
             <button
               key={index}
               className={`py-1  rounded-md px-6  h-full mr-4 lg:mr-4 ${tab.name.toLocaleLowerCase() === activeTab
-                ? "   text-green-200 border-2 border-dotted border-green-300"
+                ? "p-3 bg-gray-800 text-blue-200"
                 : " text-gray-300"
                 }    transition-all hover:underline duration-150 ease-linear`}
             >
-              <Link href={`/${tab.name.toLocaleLowerCase() === "movies" ? "/" : tab.name.toLocaleLowerCase()}`}>
+              <Link href={`/${tab.name.toLocaleLowerCase() === "movies" ? "" : tab.name.toLocaleLowerCase()}`}>
                 <a className="w-full h-full  justify-center items-center font-normal text-center">
                   <img src={tab.icon} className="w-5 h-5 mx-auto " alt='' />
                   <span className="text-center text-xs">
                     {tab.name}
                   </span>
                 </a>
-
               </Link>
             </button>
           ))}

@@ -7,16 +7,15 @@ function ToggleComp({
   setIsLoading,
   isLoading,
 }) {
-  let [color, setColor] = useState("#f00");
+  let [color, setColor] = useState("#fff");
 
   return (
-
     <button className="text-xs font-bold text-white  w-full "
       onClick={() => setIsCommentsOpen(!isCommentsOpen)}
     >
       {isLoading && (
         <div className="flex justify-center py-4 items-center ">
-          <PropagateLoader color={color} loading={isLoading} size={15} />
+          <PropagateLoader color='#ffffff' loading={isLoading} size={15} />
         </div>
       )}
       {!isLoading && (

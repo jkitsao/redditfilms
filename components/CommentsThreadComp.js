@@ -46,7 +46,7 @@ function CommentsThreadComp({ url, metadata, setIsLoading }) {
           )
             :
             <div>
-              Loading...
+              Loading Comments...
             </div>
           }
         </AnimatePresence>
