@@ -30,6 +30,7 @@ function Tabs() {
       <section
         className="sm:w-4/5 md:w-3/4 sticky top-0 z-50 bg-black lg:w-1/2 xl:w-1/3  lg:mx-auto p-3 text-sm lg:text-base"
         id="tabs"
+        
       >
         {/* bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-80 */}
         <div className="flex justify-center">

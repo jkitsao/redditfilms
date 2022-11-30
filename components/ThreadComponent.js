@@ -62,7 +62,7 @@ function MovieThreadComponent({ thread }) {
           <Upvote thread={thread} />
         </div>
         <div className="px-2  mt-5 ">
-          <span className=" block text-gray-300 text-xl  my-2 font-semibold title tracking-wide">
+          <span className=" block text-cyan-400 text-xl  my-2 font-semibold title tracking-wide">
             {thread?.data?.title}
             {/* {getHostname(thread?.data.url)} */}
           </span>
