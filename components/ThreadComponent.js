@@ -59,7 +59,7 @@ function MovieThreadComponent({ thread }) {
           <ProfileComp author={thread?.data?.author} />
           <Upvote thread={thread} />
         </div>
-        <div className="px-2 prose-lg lg:prose-2xl prose-p:font-semi-bold prose-p:text-gray-300/90  my-4 ">
+        <div className="px-2 prose-lg lg:prose-2xl prose-p:font-semibold prose-p:text-gray-300/90  my-4 ">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {/* <span className=" block text-cyan-600 text-xl  my-2 font-semibold title tracking-wide"> */}
             {thread?.data?.title}
