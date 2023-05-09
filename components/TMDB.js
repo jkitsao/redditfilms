@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import {
   Modal,
   ModalOverlay,
@@ -22,7 +23,8 @@ function TMDB({ query }) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   let [color, setColor] = useState("#ffffff");
-  const { query_param, queryIndex, setQueryIndex, query_values } = useParamParser(query)
+  const { query_param, queryIndex, setQueryIndex, query_values } =
+    useParamParser(query);
   const router = useRouter();
   const queryMovieURL = `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&query=${query_param}`;
   const queryTvUrl = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query_param}`;
@@ -34,16 +36,15 @@ function TMDB({ query }) {
   //fetch movie/series info then open the modal
   const fetchContentInfo = async () => {
     try {
-      setIsLoading(true)
-      const response = await axios.get(url)
-      setMovies(response.data)
-      setIsLoading(false)
+      setIsLoading(true);
+      const response = await axios.get(url);
+      setMovies(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
     }
-    catch (error) {
-      setIsLoading(false)
-      console.error(error)
-    }
-  }
+  };
   const handleClick = async () => {
     setQueryIndex(0);
     await fetchContentInfo();
@@ -64,10 +65,18 @@ function TMDB({ query }) {
       <button
         onClick={() => handleClick()}
         disabled={query_param.length > 40}
-        className={`text-orange-300  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2 flex items-center  my-2 cursor-pointer rounded transition-all duration-200 ${query_param.length > 40 && 'line-through text-red-700'}`}
+        className={`text-orange-300  text-xs hover:underline bg-slate-800 hover:bg-slate-900 p-2 flex items-center  my-2 cursor-pointer rounded transition-all duration-200 ${
+          query_param.length > 40 && "line-through text-red-700"
+        }`}
       >
         <div>
-          {query_param.length < 40 && <img src='/assets/movie-icon.png' className=" inline-flex items-center w-5 h-5 mx-1" alt='about' />}
+          {query_param.length < 40 && (
+            <img
+              src="/assets/movie-icon.png"
+              className=" inline-flex items-center w-5 h-5 mx-1"
+              alt="about"
+            />
+          )}
           {router.asPath === "/tvshows" ? "series" : "movie"} information
         </div>
       </button>
@@ -78,7 +87,7 @@ function TMDB({ query }) {
         size="2xl"
         scrollBehavior="inside"
         id="style-4"
-      // blockScrollOnMount={false}
+        // blockScrollOnMount={false}
       >
         <ModalOverlay />
         <ModalContent bg="black">
@@ -158,7 +167,7 @@ export function MovieComp({ movie }) {
   return (
     <div className=" lg:flex my-2 justify-center items-center  p-2 transition-all duration-150 ease-linear cursor-pointer rounded-md">
       <div className=" bg-black">
-        <img
+        {/* <img
           src={
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w500${movie?.poster_path}`
@@ -169,6 +178,18 @@ export function MovieComp({ movie }) {
             maxHeight: "250px",
             maxWidth: "500px",
           }}
+        /> */}
+        <Image
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              : "https://via.placeholder.com/480x480.png?text=File+Not+found"
+          }
+          alt={`Poster for ${movie.title}`}
+          className="modal_poster  object-cover w-full"
+          layout="responsive"
+          width={500}
+          height={400}
         />
       </div>
       {/* <hr /> */}
@@ -178,8 +199,10 @@ export function MovieComp({ movie }) {
         </div>
         <div className="  py-1 text-red-400 ">
           <span className=" inline-block mx-2 text-green-300 font-normal text-sm">
-            {movie.release_date && format(new Date(movie?.release_date), "dd MMMM yyyy")}
-            {movie.first_air_date && format(new Date(movie?.first_air_date), "dd MMMM yyyy")}
+            {movie.release_date &&
+              format(new Date(movie?.release_date), "dd MMMM yyyy")}
+            {movie.first_air_date &&
+              format(new Date(movie?.first_air_date), "dd MMMM yyyy")}
           </span>
         </div>
         <div className=" text-gray-300 px-2 text-sm w-full lg:w-4/5  p-2  shadow-md">

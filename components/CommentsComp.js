@@ -27,9 +27,7 @@ function CommentsComp({ comments }) {
             </div>
             <div className="prose prose-sm  prose-a:text-blue-400 prose-strong:text-green-400 hover:prose-a:text-blue-200 hover:prose-strong:text-green-200 transition-all duration-75 text-gray-300 ">
               <Anchorme target="_blank" rel="noreferrer noopener">
-                <ReactMarkdown>
-                  {comment?.data?.body}
-                </ReactMarkdown>
+                <ReactMarkdown>{comment?.data?.body}</ReactMarkdown>
               </Anchorme>
             </div>
             {asPath !== "/forum" && (

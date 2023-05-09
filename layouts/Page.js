@@ -4,8 +4,9 @@ import MoviesComponent from "../components/MoviesComponent";
 import Navigation from "../components/Navigation";
 import Tabs from "../components/Tabs";
 import Helmet from "../components/Helmet";
+import Loader from "../components/loaders/Loader";
 
-function Page({ data, title }) {
+function Page({ data, title, isLoading }) {
   return (
     <>
       <div className="page_layout min-h-screen h-full">
@@ -14,10 +15,11 @@ function Page({ data, title }) {
           <Helmet title={title} />
           <Tabs />
           <div className="pt-5 pb-8">
+            {isLoading && <Loader />}
             {data && <MoviesComponent data={data?.data?.children} />}
           </div>
         </div>
-        <Footer />
+        {!isLoading && <Footer />}
       </div>
     </>
   );
