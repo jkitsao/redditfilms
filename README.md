@@ -1,18 +1,22 @@
 # Redditflix
 
-> ## Get Movie and Tv shows recommendations from Reddit
+ ## Get Movie and Tv shows recommendations from Reddit
+ The application utilizes Next.js to handle the server-side rendering of the front end, providing a fast and responsive user experience. The project leverages the 
+power of React components, allowing for modular and reusable code, which enhances the maintainability and scalability of the application.
+To retrieve movie and TV show recommendations, the project integrates with the Reddit API, which allows it to fetch relevant data from various subreddits 
+  dedicated to discussing and recommending films and television series. By utilizing the Reddit API, the application can provide users with up-to-date and diverse 
+  recommendations, reflecting the current trends and preferences of the Reddit community.
 
 <!-- ![](https://cdn-icons-png.flaticon.com/512/1384/1384051.png) -->
 
 ## Preview
 
-Preview the example live on [redditflix](http://stackblitz.com/):
+Preview the example live on [redditflix](http://redditfils.vercel.app/):
 
-[![Open in StackBlitz](https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png)](https://www.redditflix.xyz/)
 
 ## How to use
 
-Clone the repository [`git clone `](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-clone#:~:text=git%20clone%20is%20primarily%20used,copies%20an%20existing%20Git%20repository.)
+Clone the repository [`git clone `](https://github.com/jkitsao/redditfilms.)
 
 ```bash
 npm install && npm run dev
